@@ -19,6 +19,7 @@ public class Destructible : MonoBehaviour {
     private void Awake() {
         emitter = GetComponentInChildren<ParticleSystem>();
         renderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider>();
 
         renderer.sprite = textures[(int)Random.Range(0, textures.Count - 1)];
 

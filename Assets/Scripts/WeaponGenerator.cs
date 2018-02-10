@@ -16,7 +16,7 @@ public class WeaponGenerator : MonoBehaviour {
         List<float> num = FeatureGenerator.GenerateNumbersFromString("rugard");
         probability = (int)FeatureGenerator.remap(num[9], 0.0f, 1.0f, 0.0f, 100.0f);
         //CreateWhip((int)FeatureGenerator.remap(num[9], 0.0f, 1.0f, 5.0f, 14.0f), 0);
-        //CreateSword(0.1f, 3.0f, 1.0f);
+        CreateSword(0.1f, 3.0f, 1.0f);
         //CreateStick(0.1f, 1.5f, 1.0f);
     }
 
