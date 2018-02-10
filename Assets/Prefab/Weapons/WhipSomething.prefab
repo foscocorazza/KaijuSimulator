@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 23804833492028094}
   - component: {fileID: 54500813959252956}
   - component: {fileID: 59410131676864104}
-  m_Layer: 0
-  m_Name: Something
+  m_Layer: 9
+  m_Name: WhipSomething
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
