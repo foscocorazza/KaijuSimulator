@@ -235,8 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4a8db0549308748a7c7598a3762810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.31123173
+  speed: 0.39621648
   particleSystem: {fileID: 1753101666745180, guid: 75420d437f38d194994b6ffc688868b3,
+    type: 2}
+  soundObject: {fileID: 1177310816928328, guid: 891d5da77e017ae41bc264a81b920620,
     type: 2}
 --- !u!198 &198778220963673728
 ParticleSystem:

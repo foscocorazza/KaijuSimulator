@@ -595,6 +595,31 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75420d437f38d194994b6ffc688868b3, type: 2}
   m_IsPrefabParent: 0
@@ -777,6 +802,91 @@ Prefab:
         type: 2}
       propertyPath: m_Constraints
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 59958808058814686, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.36058617
+      objectReference: {fileID: 0}
+    - target: {fileID: 59958808058814686, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.8422152
+      objectReference: {fileID: 0}
+    - target: {fileID: 59788502715414300, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.4949748
+      objectReference: {fileID: 0}
+    - target: {fileID: 59991447872033080, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -5.2273216
+      objectReference: {fileID: 0}
+    - target: {fileID: 59991447872033080, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.0365982
+      objectReference: {fileID: 0}
+    - target: {fileID: 59199192300823336, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.19999981
+      objectReference: {fileID: 0}
+    - target: {fileID: 59281713082307084, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.052489635
+      objectReference: {fileID: 0}
+    - target: {fileID: 59281713082307084, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.0600394
+      objectReference: {fileID: 0}
+    - target: {fileID: 59873989851519640, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.19999981
+      objectReference: {fileID: 0}
+    - target: {fileID: 59695839823248358, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.6050253
+      objectReference: {fileID: 0}
+    - target: {fileID: 59695839823248358, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.49497485
+      objectReference: {fileID: 0}
+    - target: {fileID: 59256749963260762, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.36058617
+      objectReference: {fileID: 0}
+    - target: {fileID: 59164427068145658, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.026862122
+      objectReference: {fileID: 0}
+    - target: {fileID: 59841568614029684, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.026861228
+      objectReference: {fileID: 0}
+    - target: {fileID: 59841568614029684, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.0717443
+      objectReference: {fileID: 0}
+    - target: {fileID: 59492081426684218, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.05248959
+      objectReference: {fileID: 0}
+    - target: {fileID: 59492081426684218, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.0600388
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be812d27df96ed543a32305369f8c111, type: 2}
@@ -1010,6 +1120,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed2
+    clip: {fileID: 8300000, guid: 5018396cb2997a24095a38125ac8c270, type: 3}
+  - name: Killed3
+    clip: {fileID: 8300000, guid: ff2779f945ec1cd429dc8e225e3d8408, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Killed1
+    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
   - name: Killed1
     clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
 --- !u!4 &798543425
@@ -4470,6 +4608,8 @@ MonoBehaviour:
   whipSomething: {fileID: 1053697406292752, guid: 5a7db6fc48e1d214689dbdd865822937,
     type: 2}
   swordBase: {fileID: 1528689056032554, guid: 6b01131efb5fa0649a054dbc3e9febb5, type: 2}
+  p1Hand: {fileID: 0}
+  p1Weapon: {fileID: 0}
 --- !u!1 &1057124398
 GameObject:
   m_ObjectHideFlags: 0
