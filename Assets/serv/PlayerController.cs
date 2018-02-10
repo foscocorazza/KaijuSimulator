@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public BossJointController P2Leg;
     public Rigidbody P2Hand;
 
+    public float delayVal = 0.01f;
     public float legMovSpeed = 360;
     public GameObject[] P1Weapons;
     public GameObject[] P2Weapons;
@@ -40,64 +41,37 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update () {
-        /*float p1AxisArmX = Input.GetAxis("P1HorizontalAxis1");
-        float p1AxisArmY = Input.GetAxis("P1VerticalAxis1");
-        Debug.Log(p1AxisArmX+ " " + p1AxisArmY);
-        float p1AxisLegX = Input.GetAxis("P1HorizontalAxis2");
-        float p1AxisLegY = Input.GetAxis("P1VerticalAxis2");
-        Debug.Log(p1AxisLegX + " " + p1AxisLegY);*/
+        Vector2 auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
+        p1LegAngle = validateAngle(Mathf.LerpAngle(p1LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90,delayVal));
 
-        /*        
-        float p1AxisArmX = Input.GetAxis("P1HorizontalAxis1");
-        float p1AxisArmY = Input.GetAxis("P1VerticalAxis1");
-        Debug.Log(p1AxisArmX+ " " + p1AxisArmY);
-        float p1AxisLegX = Input.GetAxis("P1HorizontalAxis2");
-        float p1AxisLegY = Input.GetAxis("P1VerticalAxis2");
-        Debug.Log(p1AxisLegX + " " + p1AxisLegY);
+        auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
+        //p1ArmAngle = validateAngle(Mathf.LerpAngle(p1ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec) + 90, delayVal));
+        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
+
+        /*auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
+        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
+
+
+        auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
+        p2ArmAngle = validateAngle(Mathf.LerpAngle(p2ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
         */
-
-
-        //TODO check names according to players
-        Vector2 auxVec = player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left");
-        if (!(auxVec.x == 0 && auxVec.y ==0)) {
-            p1LegAngle = Vector2.SignedAngle(Vector2.right, auxVec) +90;
-            //P1LegRight.localEulerAngles = Vector3.forward * legRightAngle;
-        }
-
-        auxVec = player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right");
-        if (!(auxVec.x == 0 && auxVec.y == 0)) {
-            p1ArmAngle = Vector2.SignedAngle(Vector2.right, auxVec) + 90;
-        }
-
-        auxVec = player2.GetAxis2D("Move Horizontal Left", "Move Vertical Left");
-        if (!(auxVec.x == 0 && auxVec.y == 0)) {
-            p2LegAngle = Vector2.SignedAngle(Vector2.right, auxVec) +90;
-        }
-
-        auxVec = player2.GetAxis2D("Move Horizontal Right", "Move Vertical Right");
-        if (!(auxVec.x == 0 && auxVec.y == 0)) {
-            p2ArmAngle = Vector2.SignedAngle(Vector2.right, auxVec) + 90;
-        }
-
-        /* if (Input.GetKey(KeyCode.D)) {
-             legRightAngle -= Time.deltaTime * legMovSpeed;
-         } else if (Input.GetKey(KeyCode.A)) {
-             legRightAngle += Time.deltaTime * legMovSpeed;
-         }
-         legRightAngle = Mathf.Clamp(legRightAngle, -90, 90);
-
-         if (Input.GetKey(KeyCode.E)) {
-             legLeftAngle -= Time.deltaTime * legMovSpeed;
-         } else if (Input.GetKey(KeyCode.Q)) {
-             legLeftAngle += Time.deltaTime * legMovSpeed;
-         }
-         legLeftAngle = Mathf.Clamp(legLeftAngle, -90, 90);*/
 
         if (Input.GetKeyDown(KeyCode.K)) {
            // updateWeapons(0.5f, 0.5f);
         }
 
         updateJointValues();
+    }
+
+    private float validateAngle(float anAngle) {
+        return anAngle >= 180 ? anAngle - 360 : anAngle <= -180 ? anAngle + 360 : anAngle;
+    }
+
+    private Vector2 validateAxisVec(Vector2 vec) {
+        if (vec.x == 0 && vec.y == 0) {
+            vec = Vector2.down;
+        }
+        return vec;
     }
 
     private void updateJointValues() {

@@ -6,7 +6,6 @@ public class BossJointController : MonoBehaviour {
 
     private HingeJoint myHinge;
     private JointSpring mySpring;
-
     void Awake() {
         myHinge = GetComponent<HingeJoint>();
     }
