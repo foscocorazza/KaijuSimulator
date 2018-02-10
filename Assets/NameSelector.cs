@@ -11,6 +11,7 @@ public class NameSelector : MonoBehaviour {
 
 	public int currentWheel = 0;
 	public int currentLetter = 0;
+	private int lastLetter = 0;
 	private Player player;
 	private bool LastFrameWasFree = true;
 
@@ -33,6 +34,18 @@ public class NameSelector : MonoBehaviour {
 			return;
 		}
 
+		if (player.GetButton ("ArrowKeyLeft")) {
+			if(LastFrameWasFree) ChangeWheel (-1);
+			LastFrameWasFree = false;
+			return;
+		}
+
+		if (player.GetButton ("ArrowKeyDown")) {
+			if(LastFrameWasFree) ChangeWheel (+1);
+			LastFrameWasFree = false;
+			return;
+		}
+
 
 		LastFrameWasFree = true;
 	}
@@ -45,5 +58,15 @@ public class NameSelector : MonoBehaviour {
 			wheels [currentWheel].GetComponent<RectTransform> ().anchoredPosition += new Vector2 (0.0f, offset);
 			currentLetter = nextLetter;
 		}
+	}
+
+	void ChangeWheel(int offset) {
+		int nextWheel = currentWheel + offset;
+		/*bool wheelExists = currentWheel >= 0 && currentWheel < wheels.Length;
+		bool letterExists = nextLetter >= 0 && nextLetter < 26;
+		if (wheelExists && letterExists) {
+			wheels [currentWheel].GetComponent<RectTransform> ().anchoredPosition += new Vector2 (0.0f, offset);
+			currentLetter = nextLetter;
+		}*/
 	}
 }
