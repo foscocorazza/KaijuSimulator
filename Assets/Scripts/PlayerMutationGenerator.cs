@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerMutationGenerator : MonoBehaviour {
 
     public GameObject whipBase, whipSomething, swordBase;
-    public HingeJoint p1Hand;
-    public Transform p1WeaponHolder;
+    public Rigidbody p1Hand;
 
     public GameObject p1Weapon;
 
@@ -17,7 +16,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
         generatedNumbers = FeatureGenerator.GenerateNumbersFromString("rugard");
         probability = (int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 0.0f, 100.0f);
         mutateBody();
-        mutateWeapons();
+        //mutateWeapons();
     }
 
     private void mutateBody() {
@@ -28,14 +27,16 @@ public class PlayerMutationGenerator : MonoBehaviour {
     private void mutateWeapons() {
         //TODO based on something create weapon :v
 
-        //p1Weapon = CreateWhip((int)FeatureGenerator.remap(num[9], 0.0f, 1.0f, 5.0f, 14.0f), 0, null, null);
-        p1Weapon = CreateSword(0.1f, 3.0f, 1.0f);
+        //p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 5.0f, 14.0f), 0, null, null);
+        p1Weapon = CreateSword(0.1f, FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 1.0f, 10.0f), 1.0f);
         //p1Weapon = CreateStick(0.1f, 1.5f, 1.0f);
 
-        p1Weapon.transform.SetParent(this.transform);
+        p1Weapon.transform.SetParent(transform);
         p1Weapon.transform.position = p1Hand.transform.position;
-        p1Weapon.transform.rotation = p1Hand.transform.rotation;
-        p1Hand.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
+        p1Weapon.transform.localRotation = p1Hand.transform.localRotation;
+
+        p1Weapon.transform.GetChild(0).GetComponent<SpringJoint>().connectedBody = p1Hand;
+        //p1Hand.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
     }
 
     public GameObject CreateWhip(int iterations, float offset, GameObject prevGO, GameObject rootGO) {
