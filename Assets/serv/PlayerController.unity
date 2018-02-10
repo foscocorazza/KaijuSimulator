@@ -247,7 +247,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4545419666679996, guid: be812d27df96ed543a32305369f8c111, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.24
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4545419666679996, guid: be812d27df96ed543a32305369f8c111, type: 2}
       propertyPath: m_LocalPosition.z
@@ -272,6 +272,51 @@ Prefab:
     - target: {fileID: 4545419666679996, guid: be812d27df96ed543a32305369f8c111, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 59256749963260762, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.8422153
+      objectReference: {fileID: 0}
+    - target: {fileID: 59281713082307084, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.05249038
+      objectReference: {fileID: 0}
+    - target: {fileID: 59281713082307084, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.0600393
+      objectReference: {fileID: 0}
+    - target: {fileID: 59164427068145658, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.37383214
+      objectReference: {fileID: 0}
+    - target: {fileID: 59164427068145658, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.63737816
+      objectReference: {fileID: 0}
+    - target: {fileID: 59085447103115356, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.00000026077032
+      objectReference: {fileID: 0}
+    - target: {fileID: 59085447103115356, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.5600002
+      objectReference: {fileID: 0}
+    - target: {fileID: 59492081426684218, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.052490335
+      objectReference: {fileID: 0}
+    - target: {fileID: 59492081426684218, guid: be812d27df96ed543a32305369f8c111,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.0600387
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be812d27df96ed543a32305369f8c111, type: 2}
