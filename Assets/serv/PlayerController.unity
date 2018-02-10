@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 481599578}
   - component: {fileID: 481599576}
   - component: {fileID: 481599579}
+  - component: {fileID: 481599580}
   m_Layer: 8
   m_Name: ArmLeft
   m_TagString: Untagged
@@ -732,6 +733,17 @@ HingeJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &481599580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481599573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa849360be3b9246b513113a95f8878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &527653265
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +757,7 @@ GameObject:
   - component: {fileID: 527653270}
   - component: {fileID: 527653268}
   - component: {fileID: 527653271}
+  - component: {fileID: 527653272}
   m_Layer: 8
   m_Name: ArmRight
   m_TagString: Untagged
@@ -867,6 +880,17 @@ HingeJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &527653272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 527653265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa849360be3b9246b513113a95f8878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &565987365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1039,7 @@ GameObject:
   - component: {fileID: 799444035}
   - component: {fileID: 799444033}
   - component: {fileID: 799444036}
+  - component: {fileID: 799444037}
   m_Layer: 8
   m_Name: LegRight
   m_TagString: Untagged
@@ -1116,7 +1141,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0.36058593, y: -0.84221506, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 300
+    spring: 500
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -1126,8 +1151,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: -40
-    max: 40
+    min: -90
+    max: 90
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -1137,6 +1162,17 @@ HingeJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &799444037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 799444030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa849360be3b9246b513113a95f8878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1111601497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,10 +1360,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965e7f2dc6d52544e869ede3e72eea6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1RightArm: {fileID: 0}
-  P1RightLeg: {fileID: 0}
-  P2LeftArm: {fileID: 0}
-  P2LeftLeg: {fileID: 0}
+  P1ArmRight: {fileID: 527653272}
+  P1LegRight: {fileID: 799444037}
+  P1HandRight: {fileID: 565987368}
+  P2ArmLeft: {fileID: 481599580}
+  P2LegLeft: {fileID: 1639177401}
+  P2HandRight: {fileID: 1361176087}
+  legMovSpeed: 360
+  P1Weapons: []
+  P2Weapons: []
 --- !u!1 &1310002157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,6 +1616,7 @@ GameObject:
   - component: {fileID: 1518995372}
   - component: {fileID: 1518995374}
   - component: {fileID: 1518995373}
+  - component: {fileID: 1518995375}
   m_Layer: 8
   m_Name: BasicBody-Hips
   m_TagString: Untagged
@@ -1608,7 +1650,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1518995374
 BoxCollider:
@@ -1622,6 +1664,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.7, z: 1}
   m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!136 &1518995375
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1518995371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1639177394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1690,7 @@ GameObject:
   - component: {fileID: 1639177399}
   - component: {fileID: 1639177397}
   - component: {fileID: 1639177400}
+  - component: {fileID: 1639177401}
   m_Layer: 8
   m_Name: LegLeft
   m_TagString: Untagged
@@ -1736,7 +1792,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: -0.3605858, y: -0.8422153, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 300
+    spring: 500
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -1746,8 +1802,8 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: -40
-    max: 40
+    min: -90
+    max: 90
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -1757,6 +1813,17 @@ HingeJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1639177401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639177394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa849360be3b9246b513113a95f8878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1936466796
 GameObject:
   m_ObjectHideFlags: 0
