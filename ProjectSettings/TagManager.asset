@@ -13,12 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - NoCollisionPlayer
-<<<<<<< HEAD
+  - PlayerNoCollision
   - Weapon
-=======
-  - Fake3D
->>>>>>> bb549a8fbdd5e0a81b685ee2718ddcf4cfd548c1
   - 
   - 
   - 
