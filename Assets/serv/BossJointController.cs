@@ -9,7 +9,6 @@ public class BossJointController : MonoBehaviour {
 
     void Awake() {
         myHinge = GetComponent<HingeJoint>();
-        mySpring = myHinge.spring;
     }
 
     public void updateTarget(float newAngle) {
@@ -17,6 +16,7 @@ public class BossJointController : MonoBehaviour {
         if (newAngle > 180) {
             newAngle -= 360;
         }
+        mySpring = myHinge.spring;
         newAngle = Mathf.Clamp(newAngle, myHinge.limits.min, myHinge.limits.max);
         mySpring.targetPosition = newAngle;
         myHinge.spring = mySpring;
