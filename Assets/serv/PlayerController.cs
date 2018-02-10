@@ -5,31 +5,38 @@ using Rewired;
 
 public class PlayerController : MonoBehaviour {
 
-    //public BossJointController P1ArmRight;
-    public Transform P1LegRight;
-    public Rigidbody P1HandRight;
-    //public BossJointController P2ArmLeft;
-    public Transform P2LegLeft;
-    public Rigidbody P2HandRight;
+    public BossJointController P1Arm;
+    public BossJointController P1Leg;
+    public Rigidbody P1Hand;
+    public BossJointController P2Arm;
+    public BossJointController P2Leg;
+    public Rigidbody P2Hand;
 
     public float legMovSpeed = 360;
     public GameObject[] P1Weapons;
     public GameObject[] P2Weapons;
 
-    private float legRightAngle;
-    private float legLeftAngle;
+    private float p1LegAngle;
+    private float p1ArmAngle;
+    private float p2LegAngle;
+    private float p2ArmAngle;
+
     private int p1WeaponsN;
     private int p2WeaponsN;
     private GameObject p1AssignedWeapon;
     private GameObject p2AssignedWeapon;
     private Player player1;
+    private Player player2;
 
     void Start () {
-        legRightAngle = 0;
-        legLeftAngle = 0;
+        p1LegAngle = 0;
+        p1ArmAngle = 0;
+        p2LegAngle = 0;
+        p2ArmAngle = 0;
         p1WeaponsN = P1Weapons.Length;
         p2WeaponsN= P2Weapons.Length;
         player1 = ReInput.players.GetPlayer(0);
+        player2 = ReInput.players.GetPlayer(1);
     }
 
 	void Update () {
@@ -51,19 +58,26 @@ public class PlayerController : MonoBehaviour {
 
 
         //TODO check names according to players
-        Vector2 p1RightStick = player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right");
-        if (!(p1RightStick.x == 0 && p1RightStick.y ==0)) {
-            legRightAngle = Vector2.SignedAngle(Vector2.right, p1RightStick)+80;
-            P1LegRight.localEulerAngles = Vector3.forward * legRightAngle;
-            //Debug.Log(legRightAngle);
-        }
-        
-        Vector2 p2LeftStick = player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left");
-        if (!(p2LeftStick.x == 0 && p2LeftStick.y == 0)) {
-            legLeftAngle = Vector2.SignedAngle(Vector2.right, p2LeftStick)+80;
-            P2LegLeft.localEulerAngles = Vector3.forward * legLeftAngle;
+        Vector2 auxVec = player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left");
+        if (!(auxVec.x == 0 && auxVec.y ==0)) {
+            p1LegAngle = Vector2.SignedAngle(Vector2.right, auxVec) +90;
+            //P1LegRight.localEulerAngles = Vector3.forward * legRightAngle;
         }
 
+        auxVec = player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right");
+        if (!(auxVec.x == 0 && auxVec.y == 0)) {
+            p1ArmAngle = Vector2.SignedAngle(Vector2.right, auxVec) + 90;
+        }
+
+        auxVec = player2.GetAxis2D("Move Horizontal Left", "Move Vertical Left");
+        if (!(auxVec.x == 0 && auxVec.y == 0)) {
+            p2LegAngle = Vector2.SignedAngle(Vector2.right, auxVec) +90;
+        }
+
+        auxVec = player2.GetAxis2D("Move Horizontal Right", "Move Vertical Right");
+        if (!(auxVec.x == 0 && auxVec.y == 0)) {
+            p2ArmAngle = Vector2.SignedAngle(Vector2.right, auxVec) + 90;
+        }
 
         /* if (Input.GetKey(KeyCode.D)) {
              legRightAngle -= Time.deltaTime * legMovSpeed;
@@ -83,12 +97,14 @@ public class PlayerController : MonoBehaviour {
            // updateWeapons(0.5f, 0.5f);
         }
 
-        //updateJointValues();
+        updateJointValues();
     }
 
     private void updateJointValues() {
-        //P1LegRight.updateTarget(legRightAngle);
-        //P2LegLeft.updateTarget(legLeftAngle);
+        P1Arm.updateTarget(p1ArmAngle);
+        P1Leg.updateTarget(p1LegAngle);
+        P2Arm.updateTarget(p2ArmAngle);
+        P2Leg.updateTarget(p2LegAngle);
     }
 
     public void updateWeapons(float p1Weapon, float p2Weapon) {
@@ -104,8 +120,8 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
-        p1AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P1HandRight;
-        p2AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P2HandRight;
+        p1AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P1Hand;
+        p2AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P2Hand;
     }
 
 }
