@@ -14,9 +14,7 @@ public class FadeComponent : MonoBehaviour {
 	private float time;
 
 	void Start () {
-		Color curColor = GetImage().color;
-		curColor.a = initAtAlpha;
-		GetImage().color = curColor;
+		SetAlpha (initAtAlpha);
 	}
 
 	public void Fade (float startAlpha, float finalAlpha, float delay, float time) {
@@ -25,18 +23,9 @@ public class FadeComponent : MonoBehaviour {
 		this.delay = delay;
 		this.time = time;
 
-		Color curColor = GetImage().color;
-		curColor.a = startAlpha;
-		GetImage().color = curColor;
+		SetAlpha (startAlpha);
 
 		StartCoroutine(FadeIn());
-	}
-
-	private Image GetImage() {
-		if (image == null) {
-			image = GetComponent<Image> ();
-		}
-		return image;
 	}
 		
 	IEnumerator FadeIn()
@@ -45,21 +34,48 @@ public class FadeComponent : MonoBehaviour {
 
 		float t = 0;
 
-		Color curColor = image.color;
-		float alphaDiff = Mathf.Abs(curColor.a - finalAlpha);
+		float alphaDiff = Mathf.Abs(GetAlpha() - finalAlpha);
 		while (alphaDiff > 0.0001f)
 		{
-			alphaDiff = Mathf.Abs(curColor.a - finalAlpha);
+			alphaDiff = Mathf.Abs(GetAlpha() - finalAlpha);
 
 			t +=  (Time.deltaTime / time);
-			curColor.a = Mathf.Lerp(startAlpha, finalAlpha, t);
-			GetImage().color = curColor;
+			SetAlpha (Mathf.Lerp (startAlpha, finalAlpha, t));
 			yield return null;
 		}
 
-		curColor.a = finalAlpha;
+		SetAlpha(finalAlpha);
 
 
 	}
 
+	void SetAlpha(float alpha) {
+		if (GetCanvasGroup () == null) {
+			Color curColor = GetImage ().color;
+			curColor.a = alpha;
+			GetImage ().color = curColor;
+		} else {
+			GetCanvasGroup ().alpha = alpha;
+		}
+	}
+
+	float GetAlpha() {
+		if (GetCanvasGroup () == null) {
+			return  GetImage ().color.a;
+		} else {
+			return GetCanvasGroup ().alpha;
+		}
+	}
+		
+	CanvasGroup GetCanvasGroup() {
+		return GetComponent<CanvasGroup> ();
+	}
+
+
+	private Image GetImage() {
+		if (image == null) {
+			image = GetComponent<Image> ();
+		}
+		return image;
+	}
 }
