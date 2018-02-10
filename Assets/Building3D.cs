@@ -11,6 +11,8 @@ public class Building3D : MonoBehaviour {
     public Color tint;
 
     private ParticleSystem _emitter;
+    private ParticleSystem _burster;
+
     private List<Story> _stories;
 
     public float destructionDelay = 2.0f;
@@ -19,7 +21,8 @@ public class Building3D : MonoBehaviour {
     private Color grayscale;
 
     private void Awake() {
-        _emitter = GetComponentInChildren<ParticleSystem>();
+        _emitter = GetComponentsInChildren<ParticleSystem>()[0];
+        _burster = GetComponentsInChildren<ParticleSystem>()[1];
     }
 
     // Use this for initialization
@@ -80,6 +83,12 @@ public class Building3D : MonoBehaviour {
         Vector3 pos = _emitter.transform.position;
         pos.y = storiesCount - 1;
         _emitter.transform.position = pos;
+
+        ExplosionBurst();
+    }
+
+    private void ExplosionBurst () {
+        
     }
     
     public void SetTint (Color c) {
