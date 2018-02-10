@@ -66,19 +66,26 @@
 
 	fixed4 frag(v2f i) : SV_Target
 	{
-		float3 normal = normalize(i.normal);
-		float ndotl = dot(normal, _WorldSpaceLightPos0);
+		float3 normal = i.normal;
+		float ndotl = (mul(normal, _WorldSpaceLightPos0));
+
+		//ndotl = max(0, dot(normal, _WorldSpaceLightPos0.xyz));
 		float ndotv = saturate(dot(normal, i.viewDir));
 
-		float3 lut = tex2D(_ToonLut, float2(ndotl, 0));
+		float3 lut = tex2D(_ToonLut, float2(ndotl, ndotl));
 		float3 rim = _RimColor * pow(1 - ndotv, _RimPower) * ndotl;
 
 		float3 directDiffuse = lut * _LightColor0;
 		float3 indirectDiffuse = unity_AmbientSky;
 
 		fixed4 col = tex2D(_MainTex, i.uv) * _Color;
-		col.rgb *= directDiffuse + indirectDiffuse;
-		col.rgb += rim;
+		//col.rgb *= directDiffuse + indirectDiffuse;
+		//col.rgb += rim;
+		//col.rgb *= lut;
+		if (ndotl < -0.3)
+			col = fixed4(0, 0, 0, 1);
+		else if (ndotl < -0.1)
+			col = saturate(col - fixed4(0.3, 0.3, 0.3, 0));
 		col.a = 1.0;
 
 		return col;

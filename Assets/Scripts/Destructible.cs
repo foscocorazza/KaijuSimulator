@@ -9,6 +9,11 @@ public class Destructible : MonoBehaviour {
     private Renderer renderer;
     Color grayscale;
 
+    public float destructionDelay = 20.0f;
+    private float _destructionTimer = 0;
+
+
+
     private void Awake() {
         emitter = GetComponentInChildren<ParticleSystem>();
         renderer = GetComponent<Renderer>();
@@ -20,6 +25,7 @@ public class Destructible : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        _destructionTimer -= Time.deltaTime;
         SetLevel();
 	}
 
@@ -48,5 +54,12 @@ public class Destructible : MonoBehaviour {
 
 
         emitter.transform.position = newPos;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (Level > 0 && _destructionTimer <= 0) {
+            Level--;
+            _destructionTimer = destructionDelay;
+        }
     }
 }
