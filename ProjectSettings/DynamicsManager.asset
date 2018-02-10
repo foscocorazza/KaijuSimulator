@@ -15,6 +15,10 @@ PhysicsManager:
   m_QueriesHitTriggers: 1
   m_EnableAdaptiveForce: 0
   m_EnablePCM: 1
+<<<<<<< HEAD
   m_LayerCollisionMatrix: fffdfffffff8fffffff8fffffffffffffff8fffffff8ffffffffffffffffffffc9fcffffc8fcffffc9fbffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+=======
+  m_LayerCollisionMatrix: fff9fffffff8fffffff8fffffffffffffff8fffffff8ffffffffffffffffffffc9fcffffc8f8ffffc8f9ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+>>>>>>> d550ab2ea0eae48c11f40df5b13f1e9ad731fd78
   m_AutoSimulation: 1
   m_AutoSyncTransforms: 1

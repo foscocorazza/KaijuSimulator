@@ -336,7 +336,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &1703921887
+--- !u!1001 &1827176529
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2

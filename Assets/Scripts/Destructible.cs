@@ -14,11 +14,16 @@ public class Destructible : MonoBehaviour {
 
     public List<Sprite> textures;
 
+    private BoxCollider collider;
+
     private void Awake() {
         emitter = GetComponentInChildren<ParticleSystem>();
         renderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider>();
 
         renderer.sprite = textures[(int)Random.Range(0, textures.Count - 1)];
+
+        collider.size = new Vector3(renderer.bounds.extents.x, renderer.bounds.extents.y, 50) ;
     }
     // Use this for initialization
     void Start () {
