@@ -6,17 +6,19 @@ public class Destructible : MonoBehaviour {
     [Range(0, 4)]
     public int Level = 4;
     private ParticleSystem emitter;
-    private Renderer renderer;
+    private SpriteRenderer renderer;
     Color grayscale;
 
     public float destructionDelay = 20.0f;
     private float _destructionTimer = 0;
 
-
+    public List<Sprite> textures;
 
     private void Awake() {
         emitter = GetComponentInChildren<ParticleSystem>();
-        renderer = GetComponent<Renderer>();
+        renderer = GetComponent<SpriteRenderer>();
+
+        renderer.sprite = textures[(int)Random.Range(0, textures.Count - 1)];
     }
     // Use this for initialization
     void Start () {
@@ -61,5 +63,9 @@ public class Destructible : MonoBehaviour {
             Level--;
             _destructionTimer = destructionDelay;
         }
+    }
+
+    public float GetHeight () {
+        return renderer.bounds.size.y;
     }
 }
