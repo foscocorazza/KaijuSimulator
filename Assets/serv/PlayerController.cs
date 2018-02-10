@@ -5,90 +5,80 @@ using Rewired;
 
 public class PlayerController : MonoBehaviour {
 
-    //public BossJointController P1ArmRight;
-    public Transform P1LegRight;
-    public Rigidbody P1HandRight;
-    //public BossJointController P2ArmLeft;
-    public Transform P2LegLeft;
-    public Rigidbody P2HandRight;
+    public BossJointController P1Arm;
+    public BossJointController P1Leg;
+    public Rigidbody P1Hand;
+    public BossJointController P2Arm;
+    public BossJointController P2Leg;
+    public Rigidbody P2Hand;
 
+    public float delayVal = 0.01f;
     public float legMovSpeed = 360;
     public GameObject[] P1Weapons;
     public GameObject[] P2Weapons;
 
-    private float legRightAngle;
-    private float legLeftAngle;
+    private float p1LegAngle;
+    private float p1ArmAngle;
+    private float p2LegAngle;
+    private float p2ArmAngle;
+
     private int p1WeaponsN;
     private int p2WeaponsN;
     private GameObject p1AssignedWeapon;
     private GameObject p2AssignedWeapon;
     private Player player1;
+    private Player player2;
 
     void Start () {
-        legRightAngle = 0;
-        legLeftAngle = 0;
+        p1LegAngle = 0;
+        p1ArmAngle = 0;
+        p2LegAngle = 0;
+        p2ArmAngle = 0;
         p1WeaponsN = P1Weapons.Length;
         p2WeaponsN= P2Weapons.Length;
         player1 = ReInput.players.GetPlayer(0);
+        player2 = ReInput.players.GetPlayer(1);
     }
 
 	void Update () {
-        /*float p1AxisArmX = Input.GetAxis("P1HorizontalAxis1");
-        float p1AxisArmY = Input.GetAxis("P1VerticalAxis1");
-        Debug.Log(p1AxisArmX+ " " + p1AxisArmY);
-        float p1AxisLegX = Input.GetAxis("P1HorizontalAxis2");
-        float p1AxisLegY = Input.GetAxis("P1VerticalAxis2");
-        Debug.Log(p1AxisLegX + " " + p1AxisLegY);*/
+        Vector2 auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
+        p1LegAngle = validateAngle(Mathf.LerpAngle(p1LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90,delayVal));
 
-        /*        
-        float p1AxisArmX = Input.GetAxis("P1HorizontalAxis1");
-        float p1AxisArmY = Input.GetAxis("P1VerticalAxis1");
-        Debug.Log(p1AxisArmX+ " " + p1AxisArmY);
-        float p1AxisLegX = Input.GetAxis("P1HorizontalAxis2");
-        float p1AxisLegY = Input.GetAxis("P1VerticalAxis2");
-        Debug.Log(p1AxisLegX + " " + p1AxisLegY);
+        auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
+        //p1ArmAngle = validateAngle(Mathf.LerpAngle(p1ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec) + 90, delayVal));
+        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
+
+        /*auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
+        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
+
+
+        auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
+        p2ArmAngle = validateAngle(Mathf.LerpAngle(p2ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
         */
-
-
-        //TODO check names according to players
-        Vector2 p1RightStick = player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right");
-        if (!(p1RightStick.x == 0 && p1RightStick.y ==0)) {
-            legRightAngle = Vector2.SignedAngle(Vector2.right, p1RightStick)+80;
-            P1LegRight.localEulerAngles = Vector3.forward * legRightAngle;
-            //Debug.Log(legRightAngle);
-        }
-        
-        Vector2 p2LeftStick = player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left");
-        if (!(p2LeftStick.x == 0 && p2LeftStick.y == 0)) {
-            legLeftAngle = Vector2.SignedAngle(Vector2.right, p2LeftStick)+80;
-            P2LegLeft.localEulerAngles = Vector3.forward * legLeftAngle;
-        }
-
-
-        /* if (Input.GetKey(KeyCode.D)) {
-             legRightAngle -= Time.deltaTime * legMovSpeed;
-         } else if (Input.GetKey(KeyCode.A)) {
-             legRightAngle += Time.deltaTime * legMovSpeed;
-         }
-         legRightAngle = Mathf.Clamp(legRightAngle, -90, 90);
-
-         if (Input.GetKey(KeyCode.E)) {
-             legLeftAngle -= Time.deltaTime * legMovSpeed;
-         } else if (Input.GetKey(KeyCode.Q)) {
-             legLeftAngle += Time.deltaTime * legMovSpeed;
-         }
-         legLeftAngle = Mathf.Clamp(legLeftAngle, -90, 90);*/
 
         if (Input.GetKeyDown(KeyCode.K)) {
            // updateWeapons(0.5f, 0.5f);
         }
 
-        //updateJointValues();
+        updateJointValues();
+    }
+
+    private float validateAngle(float anAngle) {
+        return anAngle >= 180 ? anAngle - 360 : anAngle <= -180 ? anAngle + 360 : anAngle;
+    }
+
+    private Vector2 validateAxisVec(Vector2 vec) {
+        if (vec.x == 0 && vec.y == 0) {
+            vec = Vector2.down;
+        }
+        return vec;
     }
 
     private void updateJointValues() {
-        //P1LegRight.updateTarget(legRightAngle);
-        //P2LegLeft.updateTarget(legLeftAngle);
+        P1Arm.updateTarget(p1ArmAngle);
+        P1Leg.updateTarget(p1LegAngle);
+        P2Arm.updateTarget(p2ArmAngle);
+        P2Leg.updateTarget(p2LegAngle);
     }
 
     public void updateWeapons(float p1Weapon, float p2Weapon) {
@@ -104,8 +94,8 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
-        p1AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P1HandRight;
-        p2AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P2HandRight;
+        p1AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P1Hand;
+        p2AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P2Hand;
     }
 
 }

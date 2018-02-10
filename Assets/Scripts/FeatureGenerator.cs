@@ -16,7 +16,6 @@ public class FeatureGenerator : MonoBehaviour {
         res[0] = name1.Substring(0, name1Size/2+ 1) + name2.Substring(name2Size / 2 + 1, name2Size - name2Size / 2);
         res[1] = name2.Substring(0, name2Size / 2 + 1) +  name1.Substring(name1Size/2 +1, name1Size- name1Size / 2) ;
 
-        GenerateNumbersFromString("rugard");
         return res;
     }
 
@@ -34,7 +33,7 @@ public class FeatureGenerator : MonoBehaviour {
         {
             seed += (float)c;
         }
-        print(seed);
+        
 
         seed = remap(seed, 291.0f, 1220.0f, 0.0f, 1.0f);
         for (int i = 0; i<input.Length; i++)
@@ -47,7 +46,7 @@ public class FeatureGenerator : MonoBehaviour {
 
         return res;
     }
-    static float remap(float x, float in_min, float in_max, float out_min, float out_max)
+    public static float remap(float x, float in_min, float in_max, float out_min, float out_max)
     {
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }

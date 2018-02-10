@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - NoCollisionPlayer
-  - 
+  - PlayerNoCollision
+  - Weapon
   - 
   - 
   - 
