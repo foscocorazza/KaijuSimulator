@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour {
         }
         legLeftAngle = Mathf.Clamp(legLeftAngle, -90, 90);
 
+        if (Input.GetKeyDown(KeyCode.K)) {
+           // updateWeapons(0.5f, 0.5f);
+        }
+
         updateJointValues();
     }
 
