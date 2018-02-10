@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 346023109}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -377,13 +377,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 346023108}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21d1abb13f144d7c85a38cdf4eeb9e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 651f2a8fc7e064ecaac1c3031f899faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Title: {fileID: 739456191}
   Press: {fileID: 668340547}
+  Player1Title: {fileID: 1104210217}
+  Player2Title: {fileID: 93000906}
   NameScreen: {fileID: 1128570051}
-  state: 0
   nameSelectorPlayer1: {fileID: 1268955354}
   nameSelectorPlayer2: {fileID: 1494214596}
 --- !u!4 &346023110
@@ -833,7 +834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1074481919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -850,7 +851,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: -20}
+  m_SizeDelta: {x: 2, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1074481920
 MonoBehaviour:
