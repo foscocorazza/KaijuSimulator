@@ -22,4 +22,8 @@ public class Story : MonoBehaviour {
     public void SetTint (Color c) {
         mat.SetColor("_Color", c);
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        transform.parent.gameObject.GetComponent<Building3D>().Collision(collision);
+    }
 }

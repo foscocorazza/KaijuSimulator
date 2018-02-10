@@ -81,20 +81,20 @@ public class Building3D : MonoBehaviour {
         pos.y = storiesCount - 1;
         _emitter.transform.position = pos;
     }
-
-    private void OnTriggerEnter(Collider other) {
-        if (storiesCount > 0 && _destructionTimer <= 0) {
-            storiesCount--;
-            _destructionTimer = destructionDelay;
-        }
-    }
-
+    
     public void SetTint (Color c) {
         tint = c;
 
         if (_stories != null)
             foreach (var i in _stories)
                 i.SetTint(c);
+    }
+
+    public void Collision (Collision collision) {
+        if (storiesCount > 0 && _destructionTimer <= 0) {
+            storiesCount--;
+            _destructionTimer = destructionDelay;
+        }
     }
 
 }
