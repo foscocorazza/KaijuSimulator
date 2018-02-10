@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54519629453608448}
   - component: {fileID: 59358704518669078}
   m_Layer: 0
-  m_Name: Handle
+  m_Name: WhipHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

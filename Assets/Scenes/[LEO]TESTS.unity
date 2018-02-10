@@ -432,7 +432,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039212648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.19, z: 0}
+  m_LocalPosition: {x: 0, y: 2.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -449,9 +449,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e46abf8f1db5e4fa1fba3de0cfb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab1: {fileID: 1295724126707552, guid: 363a840530b1fbc459f3fb117d868991, type: 2}
-  prefab2: {fileID: 1053697406292752, guid: 5a7db6fc48e1d214689dbdd865822937, type: 2}
-  prevObject: {fileID: 0}
+  whipBase: {fileID: 1295724126707552, guid: 363a840530b1fbc459f3fb117d868991, type: 2}
+  whipSomething: {fileID: 1053697406292752, guid: 5a7db6fc48e1d214689dbdd865822937,
+    type: 2}
+  swordBase: {fileID: 1528689056032554, guid: 6b01131efb5fa0649a054dbc3e9febb5, type: 2}
 --- !u!1 &2052239943
 GameObject:
   m_ObjectHideFlags: 0
