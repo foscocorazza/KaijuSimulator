@@ -7,7 +7,6 @@ public class PlayerMutationGenerator : MonoBehaviour {
     public GameObject whipBase, whipSomething, swordBase;
     public Rigidbody p1Hand;
     public Rigidbody p2Hand;
-    public GameObject auxCube;
 
     public GameObject p1Weapon;
     public GameObject p2Weapon;
@@ -40,8 +39,9 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     private void mutateWeapons() {
         //TODO based on something create weapon :v
-        //PLAYER 1
         //Debug.Log(generatedNum[8] + " " + generatedNum[9]);
+
+        //PLAYER 1
         //p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 5.0f, 14.0f), 0, null, null);
         p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
@@ -50,8 +50,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
         float mass1 = FeatureGenerator.remap(generatedNum[8]+generatedNum[9], 0f, 2f, 0.15f, 0.01f);
         //Debug.Log("mass " + mass);
         GetComponent<PlayerController>().delayValues[1] = mass1;
-
-        //p1Weapon = auxCube;
+        
         p1Weapon.transform.SetParent(transform);
         p1Weapon.transform.position = p1Hand.transform.position;
         p1Weapon.transform.localRotation = Quaternion.identity;
