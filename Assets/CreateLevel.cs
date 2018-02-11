@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class CreateLevel : MonoBehaviour {
     public Building3D buildingPrefab;
+    public List<Texture2D> textures;
 
-    // Use this for initialization
-    // Use this for initialization
-    void Start()
-    {
+	// Use this for initialization
+	void Start () {
         //TMP lot of magic numbers but whatever
-        for (int i = 0; i < 25; i++)
-        {
-            Building3D building = Instantiate(buildingPrefab);
+        for (int i = 0; i < 25; i++) {
             Vector3 pos = new Vector3();
             pos.x = Random.Range(-20, 35);
             pos.y = -4.2f + Random.Range(-0.1f, 0.1f);
             pos.z = 0;
-            building.transform.position = pos;
 
-            building.startStory = Random.Range(3, 7);
-            building.storiesCount = building.startStory;
-            building.SetTint(Random.ColorHSV());
+            int st = Random.Range(4, 8);
+            Color tint = Random.ColorHSV();
+            Texture2D tex = textures[Random.Range(0, textures.Count - 1)];
+            for (int j = 0; j < 3; j++) {
+                Building3D building = Instantiate(buildingPrefab);
+                building.transform.position = pos;
+
+                building.startStory = st;
+                building.storiesCount = building.startStory;
+                building.SetTint(tint);
+                building.SetTexture(tex);
+                pos.x++;
+            }
+
+            
+
+            
         }
-    }
-
-    // Update is called once per frame
-    void Update () {
+	}
+	
+	// Update is called once per frame
+	void Update () {
 		
 	}
 }

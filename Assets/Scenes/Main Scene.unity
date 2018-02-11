@@ -634,6 +634,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4459408367278016, guid: 79bdbb6d2440afa44b79118bd4eb1715, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -681,6 +686,46 @@ Prefab:
         type: 2}
       propertyPath: m_Center.y
       value: -9.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.data[0]
+      value: 
+      objectReference: {fileID: 2800000, guid: 7ab8587ff0fc10a4095155db69e14652, type: 3}
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.data[1]
+      value: 
+      objectReference: {fileID: 2800000, guid: 8e6674fdfa5e2ea48917f3092bf81637, type: 3}
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.data[2]
+      value: 
+      objectReference: {fileID: 2800000, guid: 1c151c2a9d7758549882c8079e96626e, type: 3}
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.data[3]
+      value: 
+      objectReference: {fileID: 2800000, guid: 8cb5353b55cd2584396f7a18ec1869ff, type: 3}
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.data[4]
+      value: 
+      objectReference: {fileID: 2800000, guid: 4a1d7e1266e48a0448a548c2ac7afc2a, type: 3}
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.data[5]
+      value: 
+      objectReference: {fileID: 2800000, guid: f4ea71a7869c2644983d0e416af82eab, type: 3}
+    - target: {fileID: 114324985390805760, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: textures.Array.data[6]
+      value: 
+      objectReference: {fileID: 2800000, guid: 8c381bbf051a0e04ea38e42b43216848, type: 3}
+    - target: {fileID: 65388810778387720, guid: 79bdbb6d2440afa44b79118bd4eb1715,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 15.51
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79bdbb6d2440afa44b79118bd4eb1715, type: 2}
@@ -838,7 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50a7c8b244bdb844b533f27b1d491be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1543757735829542, guid: af7aec7490e120f4da7f8a6be9788320,
+  enemyPrefab: {fileID: 1825206203716722, guid: cebf0ed0b4c424acf8c5868df2534370,
     type: 2}
   spawnTime: 0.54
 --- !u!4 &2141685245
@@ -848,7 +893,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2141685243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.52, y: -4.05, z: -0.9}
+  m_LocalPosition: {x: 19.52, y: -0.26, z: -0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
