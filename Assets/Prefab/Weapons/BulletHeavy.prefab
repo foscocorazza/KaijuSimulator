@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23139784463671314}
   - component: {fileID: 54687291326757036}
   - component: {fileID: 114585968472653390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletHeavy
   m_TagString: Player
   m_Icon: {fileID: 0}

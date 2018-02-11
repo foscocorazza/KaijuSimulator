@@ -224,7 +224,6 @@ public class PlayerMutationGenerator : MonoBehaviour {
         GameObject aux;
         while (true) {
             yield return new WaitForSeconds(fireRate1);
-            Debug.Log(143);
             aux = GameObject.Instantiate(myBullet1, myRangeW1.transform.position, myRangeW1.transform.rotation);
         }
     }
@@ -233,7 +232,6 @@ public class PlayerMutationGenerator : MonoBehaviour {
         GameObject aux;
         while (true) {
             yield return new WaitForSeconds(fireRate2);
-            Debug.Log(9999);
             aux = GameObject.Instantiate(myBullet2, myRangeW2.transform.position, myRangeW2.transform.rotation);
         }
     }
