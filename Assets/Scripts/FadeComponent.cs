@@ -58,7 +58,7 @@ public class FadeComponent : MonoBehaviour {
 		}
 	}
 
-	float GetAlpha() {
+	public float GetAlpha() {
 		if (GetCanvasGroup () == null) {
 			return  GetImage ().color.a;
 		} else {

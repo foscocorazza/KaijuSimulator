@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Rewired;
 
 public class HUDController : MonoBehaviour {
 
 	[Header("Data")]
 	public float maxTime = 60f;
+	public string TitleSceneName;
 
 
 	[Header("GUI Elements")]
 	public TextMeshProUGUI TimeLabel;
 	public TextMeshProUGUI ScoreLabel;
+	public TextMeshProUGUI EndScoreLabel;
+	public FadeComponent EndScreen;
 	public RectTransform BarMask;
 
 	private float maxMaskWidth;
@@ -30,8 +35,12 @@ public class HUDController : MonoBehaviour {
 		maxMaskWidth = BarMask.rect.width;
 		started = true;
 	}
-	void StopTimer() {
+
+	void StopGame() {
 		started = false;
+		EndScoreLabel.text = score.ToString();
+		KillKaiju ();
+		EndScreen.Fade (0f, 1f, 1f, 0.2f);
 	}
 
 	void Update() { 
@@ -39,12 +48,24 @@ public class HUDController : MonoBehaviour {
 			time -= Time.deltaTime;
 
 			if (time <= 0) {
-				StopTimer ();
+				StopGame ();
 				return;
 			}
 
 			SetSeconds (time);
+			SetScore(SoundManager.Instance.getScore ());
 
+		} else if (EndScreen.GetAlpha() >= 0.5f){
+			Player p1 = ReInput.players.GetPlayer(0);
+			Player p2 = ReInput.players.GetPlayer(1);
+
+			Debug.Log ("a");
+			Debug.Log (p1);
+			Debug.Log (p2);
+			if (p1.GetButton ("Start") || p2.GetButton ("Start")) {
+				Debug.Log ("b");
+				SceneManager.LoadScene (TitleSceneName);
+			}
 		}
 	}
 
@@ -60,6 +81,13 @@ public class HUDController : MonoBehaviour {
 	public void SetScore(int score) {
 		this.score = score;
 		ScoreLabel.text = score.ToString();
+	}
+
+
+	void KillKaiju() {
+		// Remove Controls
+		// Play Sound
+		// Stop Counting score
 	}
 
 }
