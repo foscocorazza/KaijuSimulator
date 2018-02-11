@@ -8,6 +8,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
     public GameObject hammerBase;
     public GameObject whipBase;
     public GameObject whipCube;
+    public GameObject rangeBase;
 
     public Rigidbody p1Hand;
     public Rigidbody p2Hand;
@@ -57,10 +58,13 @@ public class PlayerMutationGenerator : MonoBehaviour {
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));            
         mass1 = FeatureGenerator.remap(generatedNum[8]+generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
 
-        p1Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 3f, 10f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3f, 10.0f));
+        /*p1Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 4f, 10f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4f, 15.0f));
+        mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
+        p1Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f),
+            Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f)));
         mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
-
 
         //Debug.Log("mass " + mass);
         GetComponent<PlayerController>().delayValues[1] = mass1;
@@ -125,8 +129,17 @@ public class PlayerMutationGenerator : MonoBehaviour {
         bottom.localScale = new Vector3(bottom.localScale.x, height, bottom.localScale.z);
         bottom.localPosition = new Vector3(0, height / 2 + 0.5f, 0);
 
-        top.localScale = new Vector3(width, height/4f, top.localScale.z);
-        top.localPosition = new Vector3(0, height/8f + 0.5f, 0);
+        top.localScale = new Vector3(width, height/15f, top.localScale.z);
+        top.localPosition = new Vector3(0, height/30f + 0.5f, 0);
+        return sB;
+    }
+
+    public GameObject CreateRangedWeapon(float width, float height, int bulletType) {
+        GameObject sB = GameObject.Instantiate(rangeBase, Vector3.up * 10, Quaternion.identity);
+        Transform mainBody = sB.transform.GetChild(0);
+        mainBody.localScale = new Vector3(width, height, mainBody.localScale.z);
+        mainBody.localPosition = new Vector3(0, height / 2 + 0.5f, 0);
+
         return sB;
     }
 }

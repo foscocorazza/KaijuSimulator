@@ -2268,8 +2268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordBase: {fileID: 1528689056032554, guid: 6b01131efb5fa0649a054dbc3e9febb5, type: 2}
+  hammerBase: {fileID: 1736647146168354, guid: 7495930acd00a9e4b8c7ca141c8e9524, type: 2}
   whipBase: {fileID: 1032597093087762, guid: 926a37812f194a3479802f779688aeab, type: 2}
   whipCube: {fileID: 1295724126707552, guid: 363a840530b1fbc459f3fb117d868991, type: 2}
+  rangeBase: {fileID: 1818628493470088, guid: 868ba12f6ee9ab446a10d07aeca7a3ec, type: 2}
   p1Hand: {fileID: 54704914520260904}
   p2Hand: {fileID: 54359100093108506}
   p1Weapon: {fileID: 0}
