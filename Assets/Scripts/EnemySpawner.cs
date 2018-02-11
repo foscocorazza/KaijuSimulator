@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour {
         
         GameObject.Instantiate(enemyPrefab).transform.position = this.transform.position;
         
-        enemyPrefab.GetComponent<PeopleController>().speed = Random.Range(0.1f, 0.5f);
+        enemyPrefab.GetComponentInChildren<PeopleController>().speed = Random.Range(0.1f, 0.5f);
     }
 
     void GruntSounds()
