@@ -17,6 +17,6 @@ public class BulletHeavy : MonoBehaviour {
 
     private IEnumerator ggBullet() {
         yield return new WaitForSeconds(lifeTime);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

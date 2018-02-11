@@ -158,12 +158,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 868ba12f6ee9ab446a10d07aeca7a3ec, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &188313789 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114345518772562612, guid: be812d27df96ed543a32305369f8c111,
-    type: 2}
-  m_PrefabInternal: {fileID: 1827176529}
-  m_Script: {fileID: 11500000, guid: 965e7f2dc6d52544e869ede3e72eea6c, type: 3}
 --- !u!1001 &280766011
 Prefab:
   m_ObjectHideFlags: 0
@@ -366,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277d08f9db0d9ce41833a967fc3a2120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlayer: {fileID: 188313789}
 --- !u!1001 &1827176529
 Prefab:
   m_ObjectHideFlags: 0
@@ -406,24 +399,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114020849693415630, guid: be812d27df96ed543a32305369f8c111,
-        type: 2}
-      propertyPath: bullets.Array.data[1]
-      value: 
-      objectReference: {fileID: 1853476889}
-    - target: {fileID: 114020849693415630, guid: be812d27df96ed543a32305369f8c111,
-        type: 2}
-      propertyPath: bullets.Array.data[2]
-      value: 
-      objectReference: {fileID: 1853476889}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be812d27df96ed543a32305369f8c111, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1853476889 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1498736934049446, guid: cc04e445317c36b4280ea8602dda2dad,
-    type: 2}
-  m_PrefabInternal: {fileID: 2136938799}
 --- !u!1 &2045099161
 GameObject:
   m_ObjectHideFlags: 0
