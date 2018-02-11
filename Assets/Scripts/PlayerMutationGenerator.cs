@@ -115,7 +115,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
         //PLAYER 1
         int probWeapon1 = (int)FeatureGenerator.remap(generatedNum[1], 0.0f, 1.0f, 0.0f, 100f);
         if (probWeapon1 <= 25) {
-            p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3.0f, 8.0f), null,
+            p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4.0f, 10.0f), null,
             GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
         } else if (probWeapon1 <= 50) {
             p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
@@ -140,7 +140,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
         //PLAYER 2
         int probWeapon2 = (int)FeatureGenerator.remap(generatedNum[2], 0.0f, 1.0f, 0.0f, 100f);
         if (probWeapon2 <= 25) {
-            p2Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3.0f, 8.0f), null,
+            p2Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4.0f, 10.0f), null,
             GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
         } else if (probWeapon2 <=50) {
             p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
