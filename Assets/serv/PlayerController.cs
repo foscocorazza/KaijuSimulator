@@ -42,17 +42,17 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
         Vector2 auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
-        p1LegAngle = validateAngle(Mathf.LerpAngle(p1LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90,delayVal));
+        p1LegAngle = validateAngle(Mathf.LerpAngle(p1LegAngle, Vector2.SignedAngle(Vector2.down, auxVec),delayVal));
 
         auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
-        p1ArmAngle = validateAngle(Mathf.LerpAngle(p1ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec) + 90, delayVal));
-        //p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
+        p1ArmAngle = validateAngle(Mathf.LerpAngle(p1ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec), delayVal));
+        //p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.down, auxVec), delayVal));
 
         auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
-        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
+        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.down, auxVec), delayVal));
         
         auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
-        p2ArmAngle = validateAngle(Mathf.LerpAngle(p2ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec)+90, delayVal));
+        p2ArmAngle = validateAngle(Mathf.LerpAngle(p2ArmAngle, Vector2.SignedAngle(Vector2.left, auxVec), delayVal));
         
 
         if (Input.GetKeyDown(KeyCode.K)) {

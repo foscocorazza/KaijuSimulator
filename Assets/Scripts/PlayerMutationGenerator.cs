@@ -6,6 +6,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     public GameObject whipBase, whipSomething, swordBase;
     public Rigidbody p1Hand;
+    public GameObject auxCube;
 
     public GameObject p1Weapon;
 
@@ -13,10 +14,18 @@ public class PlayerMutationGenerator : MonoBehaviour {
     List<float> generatedNumbers;
 
     void Awake() {
-        generatedNumbers = FeatureGenerator.GenerateNumbersFromString("rugard");
+        generatedNumbers = FeatureGenerator.GenerateNumbersFromString(getRandomString(6));
         probability = (int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 0.0f, 100.0f);
         mutateBody();
-        //mutateWeapons();
+        mutateWeapons();
+    }
+
+    private string getRandomString(int length) {
+        string result = "";
+        for (int i = 0; i < length; i++) {
+            result += (char)Random.Range(33, 126);
+        }
+        return result;
     }
 
     private void mutateBody() {
@@ -28,14 +37,44 @@ public class PlayerMutationGenerator : MonoBehaviour {
         //TODO based on something create weapon :v
 
         //p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 5.0f, 14.0f), 0, null, null);
-        p1Weapon = CreateSword(0.1f, FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 1.0f, 10.0f), 1.0f);
+        p1Weapon = CreateSword(FeatureGenerator.remap(generatedNumbers[8], 0.0f, 1.0f, 0.1f, 1.0f),
+            FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 3.0f, 10.0f),
+            1.0f);
         //p1Weapon = CreateStick(0.1f, 1.5f, 1.0f);
 
+        //p1Weapon = auxCube;
         p1Weapon.transform.SetParent(transform);
         p1Weapon.transform.position = p1Hand.transform.position;
-        p1Weapon.transform.localRotation = p1Hand.transform.localRotation;
+        p1Weapon.transform.localRotation = Quaternion.identity;
+        /*SpringJoint spring = p1Hand.gameObject.AddComponent<SpringJoint>();
+        spring.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
+        spring.spring = 10000;*/
 
-        p1Weapon.transform.GetChild(0).GetComponent<SpringJoint>().connectedBody = p1Hand;
+
+        /*HingeJoint hinge = p1Hand.gameObject.AddComponent<HingeJoint>();
+        hinge.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
+        hinge.useLimits = true;
+        hinge.axis = Vector3.forward;
+        JointLimits auxJoint = hinge.limits;
+        auxJoint.min = 0;
+        auxJoint.max = 0;
+        hinge.limits = auxJoint;*/
+
+        /*HingeJoint hinge = p1Weapon.transform.GetChild(0).gameObject.AddComponent<HingeJoint>();
+        hinge.connectedBody = p1Hand;
+        hinge.useLimits = true;
+        hinge.axis = Vector3.forward;
+        hinge.enablePreprocessing = false;
+        JointLimits auxJoint = hinge.limits;
+        auxJoint.min = -5;
+        auxJoint.max = 5;
+        hinge.limits = auxJoint;
+        p1Weapon.transform.GetChild(0).localPosition = Vector3.zero;*/
+
+        p1Weapon.transform.GetChild(0).GetComponent<CopyTransform>().targetGO = p1Hand.transform;
+
+
+        //p1Weapon.transform.GetChild(0).GetComponent<SpringJoint>().connectedBody = p1Hand;
         //p1Hand.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
     }
 
@@ -63,12 +102,16 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     }
 
-    public GameObject CreateSword(float width, float height, float mass) {
+    public GameObject CreateSword(float width, float height, float mass) { 
+        Debug.Log(width+" "+height+" "+mass);
         GameObject sB = GameObject.Instantiate(swordBase, Vector3.up * 10, Quaternion.identity);
-        Transform blade = sB.transform.GetChild(2);
-        blade.localScale = new Vector3(width, height, 0.05f);
-        blade.localPosition += new Vector3(0, blade.gameObject.GetComponent<Collider>().bounds.size.y / 2 - 0.5f, 0);
+        Transform sBase = sB.transform.GetChild(1);
+        Transform blade = sBase.transform.GetChild(0);
+        sBase.localScale = new Vector3(width, sBase.localScale.y, sBase.localScale.z);
+        blade.localScale = new Vector3(blade.localScale.x, height, blade.localScale.z);
+        blade.localPosition += new Vector3(0, blade.gameObject.GetComponent<Collider>().bounds.size.y/2 - 0.5f, 0);
         //sB.transform.GetChild(0).GetComponent<Rigidbody>().mass = mass;
+        //blade.SetParent(sB.transform.GetChild(1));
         return sB;
     }
 
