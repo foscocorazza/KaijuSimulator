@@ -527,7 +527,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1061548639630934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4675726235366600}
@@ -1575,8 +1575,8 @@ HingeJoint:
   m_ConnectedBody: {fileID: 54609969840162850}
   m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000019868213, y: -1.0285711, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: -1, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1675,10 +1675,10 @@ HingeJoint:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1782337842368480}
   m_ConnectedBody: {fileID: 54113537792531184}
-  m_Anchor: {x: 0, y: 1, z: 0}
+  m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.3605858, y: -0.8422153, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: -0.36, y: -0.84, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 250
@@ -1709,10 +1709,10 @@ HingeJoint:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1968556410872610}
   m_ConnectedBody: {fileID: 54870433840591632}
-  m_Anchor: {x: 0, y: 1, z: 0}
+  m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.05249038, y: -1.0600393, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: -1.01, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1811,10 +1811,10 @@ HingeJoint:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1209263032552348}
   m_ConnectedBody: {fileID: 54197791867818552}
-  m_Anchor: {x: 0, y: 1.0000002, z: 0}
+  m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.052490335, y: -1.0600387, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: -1.01, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1845,10 +1845,10 @@ HingeJoint:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1782670361140464}
   m_ConnectedBody: {fileID: 54609070642168446}
-  m_Anchor: {x: 0, y: 1.0000001, z: 0}
+  m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.54999983, y: 0.5, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: -0.5, y: 0.5, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 50
@@ -1915,8 +1915,8 @@ HingeJoint:
   m_ConnectedBody: {fileID: 54609070642168446}
   m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5149999, y: 0.5, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0.5, y: 0.5, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 50
@@ -1947,10 +1947,10 @@ HingeJoint:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427842615652622}
   m_ConnectedBody: {fileID: 54017080632802586}
-  m_Anchor: {x: 0, y: 0.99999994, z: 0}
+  m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000019868213, y: -1.0714284, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: -1, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2015,10 +2015,10 @@ HingeJoint:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973295784079972}
   m_ConnectedBody: {fileID: 54113537792531184}
-  m_Anchor: {x: 0, y: 1, z: 0}
+  m_Anchor: {x: 0, y: 1.05, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.36058593, y: -0.84221506, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0.36, y: -0.84, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 250
@@ -2277,8 +2277,16 @@ MonoBehaviour:
   - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
   - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
   fireRate: 1
-  p1Hand: {fileID: 54704914520260904}
-  p2Hand: {fileID: 54359100093108506}
+  p1HandHand: {fileID: 54704914520260904}
+  p2HandHand: {fileID: 54359100093108506}
+  arm1: {fileID: 4848922099128038}
+  hand1: {fileID: 4186091574335380}
+  arm2: {fileID: 4923051219628332}
+  hand2: {fileID: 4279386784445468}
+  leg1: {fileID: 4191188515645528}
+  foot1: {fileID: 4863123620215506}
+  leg2: {fileID: 4420013478211914}
+  foot2: {fileID: 4801365734009670}
   p1Weapon: {fileID: 0}
   p2Weapon: {fileID: 0}
 --- !u!114 &114024639166537780

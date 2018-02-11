@@ -12,8 +12,17 @@ public class PlayerMutationGenerator : MonoBehaviour {
     public GameObject[] bullets;
     public float fireRate = 1;
 
-    public Rigidbody p1Hand;
-    public Rigidbody p2Hand;
+    public Rigidbody p1HandHand;
+    public Rigidbody p2HandHand;
+
+    public Transform arm1;
+    public Transform hand1;
+    public Transform arm2;
+    public Transform hand2;
+    public Transform leg1;
+    public Transform foot1;
+    public Transform leg2;
+    public Transform foot2;
 
     [HideInInspector]
     public GameObject p1Weapon;
@@ -36,6 +45,9 @@ public class PlayerMutationGenerator : MonoBehaviour {
         mutateWeapons();
     }
 
+    void Start() {
+    }
+
     private string getRandomString(int length) {
         string result = "";
         for (int i = 0; i < length; i++) {
@@ -46,7 +58,43 @@ public class PlayerMutationGenerator : MonoBehaviour {
     }
 
     private void mutateBody() {
+        //ARMS
+        arm1.localScale = new Vector3(arm1.localScale.x + FeatureGenerator.remap(generatedNum[5], 0.0f, 1.0f, -0.15f, 0.7f),
+            arm1.localScale.y + FeatureGenerator.remap(generatedNum[6], 0.0f, 1.0f, -0.3f, 0.7f),
+            arm1.localScale.z);
+        arm1.GetComponent<HingeJoint>().anchor = Vector3.up;
+        hand1.localScale = new Vector3(hand1.localScale.x + FeatureGenerator.remap(generatedNum[5], 0.0f, 1.0f, -0.15f, 0.7f),
+            hand1.localScale.y,
+            hand1.localScale.z);
+        hand1.GetComponent<HingeJoint>().anchor = Vector3.up;
 
+        arm2.localScale = new Vector3(arm2.localScale.x + FeatureGenerator.remap(generatedNum[4], 0.0f, 1.0f, -0.15f, 0.7f),
+            arm2.localScale.y + FeatureGenerator.remap(generatedNum[3], 0.0f, 1.0f, -0.3f, 0.7f),
+            arm2.localScale.z);
+        arm2.GetComponent<HingeJoint>().anchor = Vector3.up;
+        hand2.localScale = new Vector3(hand2.localScale.x + FeatureGenerator.remap(generatedNum[4], 0.0f, 1.0f, -0.15f, 0.7f),
+            hand2.localScale.y,
+            hand2.localScale.z);
+        hand2.GetComponent<HingeJoint>().anchor = Vector3.up;
+
+        //LEGS
+        leg1.localScale = new Vector3(leg1.localScale.x + FeatureGenerator.remap(generatedNum[3], 0.0f, 1.0f, -0.15f, 0.7f),
+            leg1.localScale.y + FeatureGenerator.remap(generatedNum[4], 0.0f, 1.0f, -0.3f, 0.7f),
+            leg1.localScale.z);
+        leg1.GetComponent<HingeJoint>().anchor = Vector3.up;
+        foot1.localScale = new Vector3(foot1.localScale.x + FeatureGenerator.remap(generatedNum[3], 0.0f, 1.0f, -0.15f, 0.7f),
+            foot1.localScale.y,
+            foot1.localScale.z);
+        foot1.GetComponent<HingeJoint>().anchor = Vector3.up;
+
+        leg2.localScale = new Vector3(leg2.localScale.x + FeatureGenerator.remap(generatedNum[6], 0.0f, 1.0f, -0.15f, 0.7f),
+            leg2.localScale.y + FeatureGenerator.remap(generatedNum[5], 0.0f, 1.0f, -0.3f, 0.7f),
+            leg2.localScale.z);
+        leg2.GetComponent<HingeJoint>().anchor = Vector3.up;
+        foot2.localScale = new Vector3(foot2.localScale.x + FeatureGenerator.remap(generatedNum[6], 0.0f, 1.0f, -0.15f, 0.7f),
+            foot2.localScale.y,
+            foot2.localScale.z);
+        foot2.GetComponent<HingeJoint>().anchor = Vector3.up;
 
     }
 
@@ -56,57 +104,59 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
         //PLAYER 1
         float mass1 = 1;
-        /*p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3.0f, 8.0f), null,
-            GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
-        mass1 = FeatureGenerator.remap(generatedNum[9], 0f, 1f, 0.01f, 0.15f);*/
-
-        /*p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));            
-        mass1 = FeatureGenerator.remap(generatedNum[8]+generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
-
-        /*p1Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 4f, 10f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4f, 15.0f));
-        mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
-
-        //
-        p1Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
-
+        int probWeapon1 = (int)FeatureGenerator.remap(generatedNum[1], 0.0f, 1.0f, 0.0f, 100f);
         mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
-        myBullet1 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
-        myRangeW1 = p1Weapon.transform.GetChild(0).gameObject;
-        StartCoroutine(startFire(0));
-        //
-
-        //Debug.Log("mass " + mass);
+        if (probWeapon1 <= 25) {
+            p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3.0f, 8.0f), null,
+            GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
+            mass1 = FeatureGenerator.remap(generatedNum[9], 0f, 1f, 0.01f, 0.15f);
+        } else if (probWeapon1 <= 50) {
+            p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
+        } else if (probWeapon1 <= 75) {
+            p1Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 4f, 10f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4f, 15.0f));
+        } else {
+            p1Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
+            myBullet1 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+            myRangeW1 = p1Weapon.transform.GetChild(0).gameObject;
+            StartCoroutine(startFire(0));
+        }
         GetComponent<PlayerController>().delayValues[1] = mass1;
-        
         p1Weapon.transform.SetParent(transform);
-        p1Weapon.transform.position = p1Hand.transform.position;
+        p1Weapon.transform.position = p1HandHand.transform.position;
         p1Weapon.transform.localRotation = Quaternion.identity;
-        p1Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p1Hand.transform;
+        p1Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p1HandHand.transform;
 
         //PLAYER 2
         float mass2;
-        /*p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
-        mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
-
-        p2Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
-
+        int probWeapon2 = (int)FeatureGenerator.remap(generatedNum[2], 0.0f, 1.0f, 0.0f, 100f);
         mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
-        myBullet2 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
-        myRangeW2 = p2Weapon.transform.GetChild(0).gameObject;
-        StartCoroutine(startFire(1));
-
+        if (probWeapon2 <= 25) {
+            p2Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3.0f, 8.0f), null,
+            GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
+            mass2 = FeatureGenerator.remap(generatedNum[9], 0f, 1f, 0.01f, 0.15f);
+        } else if (probWeapon2 <=50) {
+            p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+                        FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
+        } else if (probWeapon2 <=75) {
+            p2Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 4f, 10f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4f, 15.0f));
+        } else {
+            p2Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
+            myBullet2 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+            myRangeW2 = p2Weapon.transform.GetChild(0).gameObject;
+            StartCoroutine(startFire(1));
+        }
 
         GetComponent<PlayerController>().delayValues[3] = mass2;
         
         p2Weapon.transform.SetParent(transform);
-        p2Weapon.transform.position = p2Hand.transform.position;
+        p2Weapon.transform.position = p2HandHand.transform.position;
         p2Weapon.transform.localRotation = Quaternion.identity;
-        p2Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p2Hand.transform;
+        p2Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p2HandHand.transform;
         p2Weapon.transform.GetChild(0).gameObject.GetComponent<CopyTransform>().mirrorY = -1;
     }
 
