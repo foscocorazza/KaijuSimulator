@@ -11,6 +11,7 @@ public class HUDController : MonoBehaviour {
 	[Header("Data")]
 	public float maxTime = 60f;
 	public string TitleSceneName;
+	public PlayerController Kaiju;
 
 
 	[Header("GUI Elements")]
@@ -24,10 +25,14 @@ public class HUDController : MonoBehaviour {
 	private float time;
 	private int score;
 	private bool started = false;
+	Player p1, p2;
 
 	void Start() { 
 		StartTimer ();
 		SetScore (0);
+
+		p1 = ReInput.players.GetPlayer(0);
+		p2 = ReInput.players.GetPlayer(1);
 	}
 
 	void StartTimer() {
@@ -56,14 +61,8 @@ public class HUDController : MonoBehaviour {
 			SetScore(SoundManager.Instance.getScore ());
 
 		} else if (EndScreen.GetAlpha() >= 0.5f){
-			Player p1 = ReInput.players.GetPlayer(0);
-			Player p2 = ReInput.players.GetPlayer(1);
 
-			Debug.Log ("a");
-			Debug.Log (p1);
-			Debug.Log (p2);
-			if (p1.GetButton ("Start") || p2.GetButton ("Start")) {
-				Debug.Log ("b");
+			if (p1.GetButton("Fire") || p2.GetButton("Fire") ) {
 				SceneManager.LoadScene (TitleSceneName);
 			}
 		}
@@ -85,9 +84,11 @@ public class HUDController : MonoBehaviour {
 
 
 	void KillKaiju() {
-		// Remove Controls
-		// Play Sound
-		// Stop Counting score
+		Kaiju.enabled = false;
+		AudioSource AudioSource = GameObject.FindGameObjectWithTag ("Player").GetComponent<AudioSource>();
+		AudioSource.clip = SoundManager.Instance.GetSound("Dying1");
+		AudioSource.volume = 0.9f;
+		AudioSource.Play ();
 	}
 
 }
