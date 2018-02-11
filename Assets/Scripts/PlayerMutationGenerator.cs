@@ -10,7 +10,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
     public GameObject whipCube;
     public GameObject rangeBase;
     public GameObject[] bullets;
-    public float fireRate1 = 1;
+    public float fireRate1 = 2.1f;
     public float fireRate2 = 1.3f;
 
     public Rigidbody p1HandHand;
@@ -114,7 +114,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
         //PLAYER 1
         int probWeapon1 = (int)FeatureGenerator.remap(generatedNum[1], 0.0f, 1.0f, 0.0f, 100f);
-        probWeapon1 = 80;
+        //probWeapon1 = 80;
         if (probWeapon1 <= 25) {
             p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4.0f, 10.0f), null,
             GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
@@ -131,7 +131,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
             auxBulletProb = auxBulletProb <= 50 ? 0 : 1;
             myBullet1 = bullets[auxBulletProb];
             myRangeW1 = p1Weapon.transform.GetChild(0).gameObject;
-            StartCoroutine(startFire(0));
+            StartCoroutine(startFire1());
         }
         p1Weapon.transform.SetParent(transform);
         p1Weapon.transform.position = p1HandHand.transform.position;
@@ -140,6 +140,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
         //PLAYER 2
         int probWeapon2 = (int)FeatureGenerator.remap(generatedNum[2], 0.0f, 1.0f, 0.0f, 100f);
+        //probWeapon2 = 80;
         if (probWeapon2 <= 25) {
             p2Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4.0f, 10.0f), null,
             GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
@@ -156,7 +157,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
             auxBulletProb = auxBulletProb <= 50 ? 0 : 1;
             myBullet2 = bullets[auxBulletProb];
             myRangeW2 = p2Weapon.transform.GetChild(0).gameObject;
-            StartCoroutine(startFire(1));
+            StartCoroutine(startFire2());
         }                
         p2Weapon.transform.SetParent(transform);
         p2Weapon.transform.position = p2HandHand.transform.position;
@@ -219,14 +220,21 @@ public class PlayerMutationGenerator : MonoBehaviour {
         return sB;
     }
 
-    private IEnumerator startFire(int player) {
+    private IEnumerator startFire1() {
         GameObject aux;
-        GameObject auxBullet = player == 0 ? myBullet1 : myBullet2;
-        GameObject auxSource = player == 0 ? myRangeW1 : myRangeW2;
-        float thisRate = player == 0 ? fireRate1 : fireRate2;
         while (true) {
-            yield return new WaitForSeconds(thisRate);
-            aux = GameObject.Instantiate(auxBullet, auxSource.transform.position, auxSource.transform.rotation);
+            yield return new WaitForSeconds(fireRate1);
+            Debug.Log(143);
+            aux = GameObject.Instantiate(myBullet1, myRangeW1.transform.position, myRangeW1.transform.rotation);
+        }
+    }
+
+    private IEnumerator startFire2() {
+        GameObject aux;
+        while (true) {
+            yield return new WaitForSeconds(fireRate2);
+            Debug.Log(9999);
+            aux = GameObject.Instantiate(myBullet2, myRangeW2.transform.position, myRangeW2.transform.rotation);
         }
     }
 
