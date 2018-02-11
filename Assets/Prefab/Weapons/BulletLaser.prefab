@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23369573320525716}
   - component: {fileID: 54239462930137584}
   - component: {fileID: 114478254183161530}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BulletLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
