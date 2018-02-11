@@ -2274,9 +2274,10 @@ MonoBehaviour:
   rangeBase: {fileID: 1818628493470088, guid: 868ba12f6ee9ab446a10d07aeca7a3ec, type: 2}
   bullets:
   - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
-  - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
-  - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
-  fireRate: 1
+  - {fileID: 0}
+  - {fileID: 0}
+  fireRate1: 1
+  fireRate2: 1.3
   p1HandHand: {fileID: 54704914520260904}
   p2HandHand: {fileID: 54359100093108506}
   arm1: {fileID: 4848922099128038}
@@ -2287,6 +2288,8 @@ MonoBehaviour:
   foot1: {fileID: 4863123620215506}
   leg2: {fileID: 4420013478211914}
   foot2: {fileID: 4801365734009670}
+  head1: {fileID: 4525833713702036}
+  head2: {fileID: 4696398047920688}
   p1Weapon: {fileID: 0}
   p2Weapon: {fileID: 0}
 --- !u!114 &114024639166537780
