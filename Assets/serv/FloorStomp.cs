@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FloorStomp : MonoBehaviour {
 
-    public PlayerController myPlayer;
-
+    private PlayerController myPlayer;
     private KaijuCameraController myCam;
 
     void Start() {
+        myPlayer = GameObject.FindGameObjectWithTag("PlayerScripts").GetComponent<PlayerController>();
         myCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<KaijuCameraController>();
     }
 

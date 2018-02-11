@@ -114,6 +114,7 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
         //PLAYER 1
         int probWeapon1 = (int)FeatureGenerator.remap(generatedNum[1], 0.0f, 1.0f, 0.0f, 100f);
+        probWeapon1 = 80;
         if (probWeapon1 <= 25) {
             p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4.0f, 10.0f), null,
             GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
