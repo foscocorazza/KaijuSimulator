@@ -42,8 +42,9 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     void Awake() {
         //kirzde
-        //Debug.Log(PlayerPrefs.GetString("PlayerName"));
-        generatedNum = FeatureGenerator.GenerateNumbersFromString(PlayerPrefs.GetString("PlayerName"));
+        string aux = PlayerPrefs.GetString("PlayerName");
+        aux = aux == null || aux.Length < 5 ? getRandomString(6) : aux;
+        generatedNum = FeatureGenerator.GenerateNumbersFromString(aux);
         probability = (int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.0f, 100.0f);
         mutateBody();
         mutateWeapons();
