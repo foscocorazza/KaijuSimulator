@@ -11,33 +11,31 @@ public class PlayerController : MonoBehaviour {
     public BossJointController P2Arm;
     public BossJointController P2Leg;
     public Rigidbody P2Hand;
+    public bool isJumping;
 
     //P1 Leg Arm , P2 Leg Arm
     public float[] delayValues = new float []{0.1f, 0.1f, 0.1f, 0.1f };
-    public GameObject[] P1Weapons;
-    public GameObject[] P2Weapons;
 
     private float p1LegAngle;
     private float p1ArmAngle;
     private float p2LegAngle;
     private float p2ArmAngle;
-
-    private int p1WeaponsN;
-    private int p2WeaponsN;
+    
     private GameObject p1AssignedWeapon;
     private GameObject p2AssignedWeapon;
     private Player player1;
     private Player player2;
+    private Transform myHip;
 
     void Start () {
         p1LegAngle = 0;
         p1ArmAngle = 0;
         p2LegAngle = 0;
         p2ArmAngle = 0;
-        p1WeaponsN = P1Weapons.Length;
-        p2WeaponsN= P2Weapons.Length;
         player1 = ReInput.players.GetPlayer(0);
         player2 = ReInput.players.GetPlayer(1);
+        isJumping = true;
+        myHip = transform.GetChild(0).transform;
     }
 
 	void Update () {
@@ -53,10 +51,9 @@ public class PlayerController : MonoBehaviour {
         
         auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
         p2ArmAngle = validateAngle(Mathf.LerpAngle(p2ArmAngle, Vector2.SignedAngle(Vector2.left, auxVec), delayValues[3]));
-        
 
-        if (Input.GetKeyDown(KeyCode.K)) {
-           // updateWeapons(0.5f, 0.5f);
+        if (myHip.localPosition.y > 0.1f) {
+            isJumping = true;
         }
 
         updateJointValues();
@@ -78,23 +75,6 @@ public class PlayerController : MonoBehaviour {
         P1Leg.updateTarget(p1LegAngle);
         P2Arm.updateTarget(p2ArmAngle);
         P2Leg.updateTarget(p2LegAngle);
-    }
-
-    public void updateWeapons(float p1Weapon, float p2Weapon) {
-        for (int i = 1; i <= p1WeaponsN; i++) {
-            if (p1WeaponsN <= i/(float)p1WeaponsN) {
-                p1AssignedWeapon = Instantiate(P1Weapons[i - 1], this.transform);
-                break;
-            }
-        }
-        for (int i = 1; i <= p2WeaponsN; i++) {
-            if (p2WeaponsN <= i / (float)p2WeaponsN) {
-                p2AssignedWeapon = Instantiate(P2Weapons[i - 1], this.transform);
-                break;
-            }
-        }
-        p1AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P1Hand;
-        p2AssignedWeapon.GetComponent<HingeJoint>().connectedBody = P2Hand;
     }
 
 }
