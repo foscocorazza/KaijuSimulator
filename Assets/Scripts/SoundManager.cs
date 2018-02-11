@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
     private static SoundManager _instance;
-
+    public static int score = 0;
     public static SoundManager Instance
     {
         get
@@ -31,6 +31,15 @@ public class SoundManager : MonoBehaviour {
     }
 
     public List<sound> sounds;
+
+    public void AddScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+    }
+    public int getScore()
+    {
+        return score;
+    }
 
     public AudioClip GetSound(string name)
     {

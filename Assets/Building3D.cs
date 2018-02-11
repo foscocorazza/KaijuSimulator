@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building3D : MonoBehaviour {
+public class Building3D : MonoBehaviour
+{
     public Story storyPrefab;
     public int startStory = 4;
 
@@ -20,13 +21,14 @@ public class Building3D : MonoBehaviour {
 
     private Color grayscale;
 
-    private void Awake() {
+    private void Awake()
+    {
         _emitter = GetComponentsInChildren<ParticleSystem>()[0];
-        _burster = GetComponentsInChildren<ParticleSystem>()[1];
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         storiesCount = startStory;
         _stories = new List<Story>();
         for (int i = 0; i < storiesCount; i++)
@@ -34,9 +36,10 @@ public class Building3D : MonoBehaviour {
 
         grayscale = new Color(1.0f / 0x3E, 1.0f / 0x3E, 1.0f / 0x3E);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         _destructionTimer -= Time.deltaTime;
 
         while (_stories.Count < storiesCount - 1)
@@ -57,7 +60,8 @@ public class Building3D : MonoBehaviour {
 
     }
 
-    private void CreateStory () {
+    private void CreateStory()
+    {
         Story s = Instantiate(storyPrefab);
         s.transform.SetParent(transform, true);
 
@@ -71,27 +75,32 @@ public class Building3D : MonoBehaviour {
         _stories.Add(s);
 
 
-        _emitter.transform.position = new Vector3(0, _stories.Count - 1, 0);
+        _emitter.transform.localPosition = s.transform.localPosition;
+        //_emitter.transform.position = s.transform.position; 
     }
 
-    private void DestroyStory () {
+    private void DestroyStory()
+    {
         Story s = _stories[_stories.Count - 1];
 
         _stories.Remove(s);
         Destroy(s.gameObject);
-        
-        Vector3 pos = _emitter.transform.position;
-        pos.y = storiesCount - 1;
-        _emitter.transform.position = pos;
+
+        Vector3 pos = _emitter.transform.localPosition;
+        pos.y--;
+
+        _emitter.transform.localPosition = pos;
 
         ExplosionBurst();
     }
 
-    private void ExplosionBurst () {
-        
+    private void ExplosionBurst()
+    {
+
     }
-    
-    public void SetTint (Color c) {
+
+    public void SetTint(Color c)
+    {
         tint = c;
 
         if (_stories != null)
@@ -99,8 +108,10 @@ public class Building3D : MonoBehaviour {
                 i.SetTint(c);
     }
 
-    public void Collision (Collision collision) {
-        if (storiesCount > 0 && _destructionTimer <= 0) {
+    public void Collision(Collision collision)
+    {
+        if (storiesCount > 0 && _destructionTimer <= 0)
+        {
             storiesCount--;
             _destructionTimer = destructionDelay;
         }
