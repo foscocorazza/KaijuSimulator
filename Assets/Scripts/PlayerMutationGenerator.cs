@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerMutationGenerator : MonoBehaviour {
 
-    public GameObject whipBase, whipSomething, swordBase;
+    public GameObject swordBase;
+    public GameObject hammerBase;
+    public GameObject whipBase;
+    public GameObject whipCube;
+
     public Rigidbody p1Hand;
     public Rigidbody p2Hand;
 
+    [HideInInspector]
     public GameObject p1Weapon;
+    [HideInInspector]
     public GameObject p2Weapon;
 
     private int probability;
@@ -42,77 +48,85 @@ public class PlayerMutationGenerator : MonoBehaviour {
         //Debug.Log(generatedNum[8] + " " + generatedNum[9]);
 
         //PLAYER 1
-        //p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 5.0f, 14.0f), 0, null, null);
-        p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
-        //p1Weapon = CreateStick(0.1f, 1.5f, 1.0f);
+        float mass1 = 1;
+        /*p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3.0f, 8.0f), null,
+            GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
+        mass1 = FeatureGenerator.remap(generatedNum[9], 0f, 1f, 0.01f, 0.15f);*/
 
-        float mass1 = FeatureGenerator.remap(generatedNum[8]+generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        /*p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));            
+        mass1 = FeatureGenerator.remap(generatedNum[8]+generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
+
+        p1Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 3f, 10f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3f, 10.0f));
+        mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+
+
         //Debug.Log("mass " + mass);
         GetComponent<PlayerController>().delayValues[1] = mass1;
         
         p1Weapon.transform.SetParent(transform);
         p1Weapon.transform.position = p1Hand.transform.position;
         p1Weapon.transform.localRotation = Quaternion.identity;
-        p1Weapon.transform.GetChild(0).GetComponent<CopyTransform>().targetGO = p1Hand.transform;
+        p1Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p1Hand.transform;
 
         //PLAYER 2
+        float mass2;
         p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
-        float mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
-        GetComponent<PlayerController>().delayValues[1] = mass2;
+        mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
 
+        GetComponent<PlayerController>().delayValues[1] = mass2;
+        
         p2Weapon.transform.SetParent(transform);
         p2Weapon.transform.position = p2Hand.transform.position;
         p2Weapon.transform.localRotation = Quaternion.identity;
-        p2Weapon.transform.GetChild(0).GetComponent<CopyTransform>().targetGO = p2Hand.transform;
+        p2Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p2Hand.transform;
     }
 
-    public GameObject CreateWhip(int iterations, float offset, GameObject prevGO, GameObject rootGO) {
+    public GameObject CreateWhip(int iterations, GameObject prevGO, GameObject rootGO) {
         if (iterations == 0) {
             return rootGO;
         }
-        GameObject newObj = new GameObject();
-        if (Random.Range(0, 100) < probability)
-            newObj = GameObject.Instantiate(whipBase, this.gameObject.transform);
-        else
-            newObj = GameObject.Instantiate(whipSomething, this.gameObject.transform);
-        newObj.transform.position += new Vector3(offset, 0, 0);
-
-        if (prevGO != null) {
-            if (newObj.transform.localScale.x > 0.3f) newObj.transform.localScale = newObj.transform.localScale + new Vector3(Random.Range(0.0f, 0.2f), 0.0f, 0.0f);
-            newObj.GetComponent<HingeJoint>().connectedBody = prevGO.GetComponent<Rigidbody>();
-        } else {
-            rootGO = newObj;
+        if (prevGO == null) {
+            prevGO = rootGO.transform.GetChild(0).gameObject;
         }
+        GameObject newObj = new GameObject();
+        newObj = GameObject.Instantiate(whipCube, rootGO.transform);
+        newObj.transform.localPosition = prevGO.transform.localPosition + new Vector3(prevGO.transform.localScale.x+0.1f, 0, 0);
+
+        newObj.transform.localScale = newObj.transform.localScale +
+            new Vector3(0f, Random.Range(0.1f, 0.4f), 0.0f);
+
+        newObj.GetComponent<HingeJoint>().connectedBody = prevGO.GetComponent<Rigidbody>();
         prevGO = newObj;
         iterations--;
 
-        return CreateWhip(iterations--, offset + newObj.GetComponent<Collider>().bounds.size.x, prevGO, rootGO);
+        return CreateWhip(iterations, prevGO, rootGO);
 
     }
 
     public GameObject CreateSword(float width, float height) { 
-        Debug.Log(width+" "+height);
+        //Debug.Log(width+" "+height);
         GameObject sB = GameObject.Instantiate(swordBase, Vector3.up * 10, Quaternion.identity);
         Transform sBase = sB.transform.GetChild(1);
         Transform blade = sBase.transform.GetChild(0);
         sBase.localScale = new Vector3(width, sBase.localScale.y, sBase.localScale.z);
         blade.localScale = new Vector3(blade.localScale.x, height, blade.localScale.z);
-        blade.localPosition = new Vector3(0, height/2, 0);
+        blade.localPosition = new Vector3(0f, height/2 + 0.5f, 0f);
         return sB;
     }
 
-    public GameObject CreateStick(float width, float height, float mass) {
-        GameObject sB = GameObject.Instantiate(swordBase, Vector3.up *10, Quaternion.identity);
-        Transform top = sB.transform.GetChild(1);
-        Transform bottom = sB.transform.GetChild(2);
-        top.localScale = new Vector3(width, height, 0.05f);
-        top.localPosition += new Vector3(0, top.gameObject.GetComponent<Collider>().bounds.size.y / 2, 0);
+    public GameObject CreateHammer(float width, float height) {
+        GameObject sB = GameObject.Instantiate(hammerBase, Vector3.up *10, Quaternion.identity);
+        Transform bottom = sB.transform.GetChild(0).GetChild(0);
+        Transform top = bottom.transform.GetChild(0);
 
-        bottom.localScale = new Vector3(width, height, 0.05f);
-        bottom.localPosition -= new Vector3(0, bottom.gameObject.GetComponent<Collider>().bounds.size.y / 2, 0);
-        sB.GetComponent<Rigidbody>().mass = mass;
+        bottom.localScale = new Vector3(bottom.localScale.x, height, bottom.localScale.z);
+        bottom.localPosition = new Vector3(0, height / 2 + 0.5f, 0);
+
+        top.localScale = new Vector3(width, height/4f, top.localScale.z);
+        top.localPosition = new Vector3(0, height/8f + 0.5f, 0);
         return sB;
     }
 }

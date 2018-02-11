@@ -377,9 +377,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114020849693415630, guid: be812d27df96ed543a32305369f8c111,
         type: 2}
-      propertyPath: auxCube
+      propertyPath: hammerBase
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1736647146168354, guid: 7495930acd00a9e4b8c7ca141c8e9524,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be812d27df96ed543a32305369f8c111, type: 2}
   m_IsPrefabParent: 0

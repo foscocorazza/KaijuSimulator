@@ -2267,13 +2267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e46abf8f1db5e4fa1fba3de0cfb8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whipBase: {fileID: 1295724126707552, guid: 363a840530b1fbc459f3fb117d868991, type: 2}
-  whipSomething: {fileID: 1053697406292752, guid: 5a7db6fc48e1d214689dbdd865822937,
-    type: 2}
   swordBase: {fileID: 1528689056032554, guid: 6b01131efb5fa0649a054dbc3e9febb5, type: 2}
+  whipBase: {fileID: 1032597093087762, guid: 926a37812f194a3479802f779688aeab, type: 2}
+  whipCube: {fileID: 1295724126707552, guid: 363a840530b1fbc459f3fb117d868991, type: 2}
   p1Hand: {fileID: 54704914520260904}
   p2Hand: {fileID: 54359100093108506}
-  auxCube: {fileID: 0}
   p1Weapon: {fileID: 0}
   p2Weapon: {fileID: 0}
 --- !u!114 &114024639166537780
