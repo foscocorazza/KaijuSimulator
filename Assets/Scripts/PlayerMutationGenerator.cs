@@ -9,6 +9,8 @@ public class PlayerMutationGenerator : MonoBehaviour {
     public GameObject whipBase;
     public GameObject whipCube;
     public GameObject rangeBase;
+    public GameObject[] bullets;
+    public float fireRate = 1;
 
     public Rigidbody p1Hand;
     public Rigidbody p2Hand;
@@ -18,6 +20,10 @@ public class PlayerMutationGenerator : MonoBehaviour {
     [HideInInspector]
     public GameObject p2Weapon;
 
+    private GameObject myRangeW1;
+    private GameObject myBullet1;
+    private GameObject myRangeW2;
+    private GameObject myBullet2;
     private int probability;
     private List<float> generatedNum;
     private string abc = "qwertyuioplkjhgfdsazxcvbnm";
@@ -61,10 +67,16 @@ public class PlayerMutationGenerator : MonoBehaviour {
         /*p1Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 4f, 10f),
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4f, 15.0f));
         mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
+
+        //
         p1Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
-            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f),
-            Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f)));
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
+
         mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        myBullet1 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+        myRangeW1 = p1Weapon.transform.GetChild(0).gameObject;
+        StartCoroutine(startFire(0));
+        //
 
         //Debug.Log("mass " + mass);
         GetComponent<PlayerController>().delayValues[1] = mass1;
@@ -76,16 +88,26 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
         //PLAYER 2
         float mass2;
-        p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+        /*p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
-        mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
 
-        GetComponent<PlayerController>().delayValues[1] = mass2;
+        p2Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
+
+        mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        myBullet2 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+        myRangeW2 = p2Weapon.transform.GetChild(0).gameObject;
+        StartCoroutine(startFire(1));
+
+
+        GetComponent<PlayerController>().delayValues[3] = mass2;
         
         p2Weapon.transform.SetParent(transform);
         p2Weapon.transform.position = p2Hand.transform.position;
         p2Weapon.transform.localRotation = Quaternion.identity;
         p2Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p2Hand.transform;
+        p2Weapon.transform.GetChild(0).gameObject.GetComponent<CopyTransform>().mirrorY = -1;
     }
 
     public GameObject CreateWhip(int iterations, GameObject prevGO, GameObject rootGO) {
@@ -134,12 +156,22 @@ public class PlayerMutationGenerator : MonoBehaviour {
         return sB;
     }
 
-    public GameObject CreateRangedWeapon(float width, float height, int bulletType) {
+    public GameObject CreateRangedWeapon(float width, float height) {
         GameObject sB = GameObject.Instantiate(rangeBase, Vector3.up * 10, Quaternion.identity);
         Transform mainBody = sB.transform.GetChild(0);
         mainBody.localScale = new Vector3(width, height, mainBody.localScale.z);
         mainBody.localPosition = new Vector3(0, height / 2 + 0.5f, 0);
-
         return sB;
     }
+
+    private IEnumerator startFire(int player) {
+        GameObject aux;
+        GameObject auxBullet = player == 0 ? myBullet1 : myBullet2;
+        GameObject auxSource = auxSource = player == 0 ? myRangeW1 : myRangeW2;
+        while (true) {
+            yield return new WaitForSeconds(fireRate);
+            aux = GameObject.Instantiate(auxBullet, auxSource.transform.position, auxSource.transform.rotation);
+        }
+    }
+
 }

@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class BulletHeavy : MonoBehaviour {
 
-    public float force = 50;
+    public float force = 30;
 
     private Rigidbody myBody;
 
 	void Start () {
         myBody = GetComponent<Rigidbody>();
-        myBody.AddExplosionForce(force, Vector3.zero, 1);
+        myBody.AddForce(transform.right * force, ForceMode.Impulse);
     }
-	
-	void Update () {
-		
-	}
 }

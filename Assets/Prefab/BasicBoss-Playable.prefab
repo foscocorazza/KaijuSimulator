@@ -2272,6 +2272,11 @@ MonoBehaviour:
   whipBase: {fileID: 1032597093087762, guid: 926a37812f194a3479802f779688aeab, type: 2}
   whipCube: {fileID: 1295724126707552, guid: 363a840530b1fbc459f3fb117d868991, type: 2}
   rangeBase: {fileID: 1818628493470088, guid: 868ba12f6ee9ab446a10d07aeca7a3ec, type: 2}
+  bullets:
+  - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
+  - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
+  - {fileID: 1958261020835488, guid: 6016b56ac139fd840ac30bee308376c5, type: 2}
+  fireRate: 1
   p1Hand: {fileID: 54704914520260904}
   p2Hand: {fileID: 54359100093108506}
   p1Weapon: {fileID: 0}

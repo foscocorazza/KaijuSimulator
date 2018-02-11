@@ -6,6 +6,7 @@ public class CopyTransform : MonoBehaviour {
 
     public Transform targetGO = null;
     public Vector3 offset = Vector3.zero;
+    public int mirrorY = 1;
 
     private Rigidbody myBody;
 
@@ -16,7 +17,10 @@ public class CopyTransform : MonoBehaviour {
     void FixedUpdate () {
         if (targetGO != null) {
             myBody.position = targetGO.position + offset;
-            myBody.rotation = targetGO.rotation;
+            myBody.rotation = new Quaternion(targetGO.rotation.x,
+                                            targetGO.rotation.y,
+                                            targetGO.rotation.z * mirrorY,
+                                            targetGO.rotation.w * 1);
         }
 	}
 }
