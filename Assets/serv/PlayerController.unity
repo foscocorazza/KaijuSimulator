@@ -239,6 +239,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4659111576690220, guid: 6b01131efb5fa0649a054dbc3e9febb5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 38.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 1070891289698358, guid: 6b01131efb5fa0649a054dbc3e9febb5, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b01131efb5fa0649a054dbc3e9febb5, type: 2}
   m_IsPrefabParent: 0
@@ -384,23 +392,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a13e34da491a364fa63ae886d73d42c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1101973048 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1563767562361930, guid: be812d27df96ed543a32305369f8c111,
-    type: 2}
-  m_PrefabInternal: {fileID: 1827176529}
---- !u!114 &1101973055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1101973048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0983b1ce3d15700429e3785f1ffab86c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 1
 --- !u!1001 &1109817130
 Prefab:
   m_ObjectHideFlags: 0
@@ -728,26 +719,6 @@ Prefab:
       propertyPath: auxCube
       value: 
       objectReference: {fileID: 659236303}
-    - target: {fileID: 59991447872033080, guid: be812d27df96ed543a32305369f8c111,
-        type: 2}
-      propertyPath: m_Limits.min
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 59344074754184992, guid: be812d27df96ed543a32305369f8c111,
-        type: 2}
-      propertyPath: m_Limits.min
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 59991447872033080, guid: be812d27df96ed543a32305369f8c111,
-        type: 2}
-      propertyPath: m_Limits.max
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 59344074754184992, guid: be812d27df96ed543a32305369f8c111,
-        type: 2}
-      propertyPath: m_Limits.max
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be812d27df96ed543a32305369f8c111, type: 2}
   m_IsPrefabParent: 0
@@ -916,20 +887,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2143752166 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1093641556719346, guid: be812d27df96ed543a32305369f8c111,
-    type: 2}
-  m_PrefabInternal: {fileID: 1827176529}
---- !u!114 &2143752173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2143752166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0983b1ce3d15700429e3785f1ffab86c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 1

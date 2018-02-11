@@ -6,16 +6,20 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     public GameObject whipBase, whipSomething, swordBase;
     public Rigidbody p1Hand;
+    public Rigidbody p2Hand;
     public GameObject auxCube;
 
     public GameObject p1Weapon;
+    public GameObject p2Weapon;
 
     private int probability;
-    List<float> generatedNumbers;
+    private List<float> generatedNum;
+    private string abc = "qwertyuioplkjhgfdsazxcvbnm";
 
     void Awake() {
-        generatedNumbers = FeatureGenerator.GenerateNumbersFromString(getRandomString(6));
-        probability = (int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 0.0f, 100.0f);
+        //kirzde
+        generatedNum = FeatureGenerator.GenerateNumbersFromString(getRandomString(6));
+        probability = (int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.0f, 100.0f);
         mutateBody();
         mutateWeapons();
     }
@@ -23,8 +27,9 @@ public class PlayerMutationGenerator : MonoBehaviour {
     private string getRandomString(int length) {
         string result = "";
         for (int i = 0; i < length; i++) {
-            result += (char)Random.Range(33, 126);
+            result += abc[Random.Range(0, abc.Length)];
         }
+        //Debug.Log(result);
         return result;
     }
 
@@ -35,47 +40,33 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     private void mutateWeapons() {
         //TODO based on something create weapon :v
-
+        //PLAYER 1
+        //Debug.Log(generatedNum[8] + " " + generatedNum[9]);
         //p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 5.0f, 14.0f), 0, null, null);
-        p1Weapon = CreateSword(FeatureGenerator.remap(generatedNumbers[8], 0.0f, 1.0f, 0.1f, 1.0f),
-            FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 3.0f, 10.0f),
-            1.0f);
+        p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
         //p1Weapon = CreateStick(0.1f, 1.5f, 1.0f);
+
+        float mass1 = FeatureGenerator.remap(generatedNum[8]+generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        //Debug.Log("mass " + mass);
+        GetComponent<PlayerController>().delayValues[1] = mass1;
 
         //p1Weapon = auxCube;
         p1Weapon.transform.SetParent(transform);
         p1Weapon.transform.position = p1Hand.transform.position;
         p1Weapon.transform.localRotation = Quaternion.identity;
-        /*SpringJoint spring = p1Hand.gameObject.AddComponent<SpringJoint>();
-        spring.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
-        spring.spring = 10000;*/
-
-
-        /*HingeJoint hinge = p1Hand.gameObject.AddComponent<HingeJoint>();
-        hinge.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
-        hinge.useLimits = true;
-        hinge.axis = Vector3.forward;
-        JointLimits auxJoint = hinge.limits;
-        auxJoint.min = 0;
-        auxJoint.max = 0;
-        hinge.limits = auxJoint;*/
-
-        /*HingeJoint hinge = p1Weapon.transform.GetChild(0).gameObject.AddComponent<HingeJoint>();
-        hinge.connectedBody = p1Hand;
-        hinge.useLimits = true;
-        hinge.axis = Vector3.forward;
-        hinge.enablePreprocessing = false;
-        JointLimits auxJoint = hinge.limits;
-        auxJoint.min = -5;
-        auxJoint.max = 5;
-        hinge.limits = auxJoint;
-        p1Weapon.transform.GetChild(0).localPosition = Vector3.zero;*/
-
         p1Weapon.transform.GetChild(0).GetComponent<CopyTransform>().targetGO = p1Hand.transform;
 
+        //PLAYER 2
+        p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
+        float mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        GetComponent<PlayerController>().delayValues[1] = mass2;
 
-        //p1Weapon.transform.GetChild(0).GetComponent<SpringJoint>().connectedBody = p1Hand;
-        //p1Hand.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
+        p2Weapon.transform.SetParent(transform);
+        p2Weapon.transform.position = p2Hand.transform.position;
+        p2Weapon.transform.localRotation = Quaternion.identity;
+        p2Weapon.transform.GetChild(0).GetComponent<CopyTransform>().targetGO = p2Hand.transform;
     }
 
     public GameObject CreateWhip(int iterations, float offset, GameObject prevGO, GameObject rootGO) {
@@ -102,16 +93,14 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     }
 
-    public GameObject CreateSword(float width, float height, float mass) { 
-        Debug.Log(width+" "+height+" "+mass);
+    public GameObject CreateSword(float width, float height) { 
+        Debug.Log(width+" "+height);
         GameObject sB = GameObject.Instantiate(swordBase, Vector3.up * 10, Quaternion.identity);
         Transform sBase = sB.transform.GetChild(1);
         Transform blade = sBase.transform.GetChild(0);
         sBase.localScale = new Vector3(width, sBase.localScale.y, sBase.localScale.z);
         blade.localScale = new Vector3(blade.localScale.x, height, blade.localScale.z);
-        blade.localPosition += new Vector3(0, blade.gameObject.GetComponent<Collider>().bounds.size.y/2 - 0.5f, 0);
-        //sB.transform.GetChild(0).GetComponent<Rigidbody>().mass = mass;
-        //blade.SetParent(sB.transform.GetChild(1));
+        blade.localPosition = new Vector3(0, height/2, 0);
         return sB;
     }
 

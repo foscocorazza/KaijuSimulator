@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour {
     public BossJointController P2Leg;
     public Rigidbody P2Hand;
 
-    public float delayVal = 0.01f;
-    public float legMovSpeed = 360;
+    //P1 Leg Arm , P2 Leg Arm
+    public float[] delayValues = new float []{0.1f, 0.1f, 0.1f, 0.1f };
     public GameObject[] P1Weapons;
     public GameObject[] P2Weapons;
 
@@ -42,17 +42,17 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
         Vector2 auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
-        p1LegAngle = validateAngle(Mathf.LerpAngle(p1LegAngle, Vector2.SignedAngle(Vector2.down, auxVec),delayVal));
+        p1LegAngle = validateAngle(Mathf.LerpAngle(p1LegAngle, Vector2.SignedAngle(Vector2.down, auxVec),delayValues[0]));
 
         auxVec = validateAxisVec(player1.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
-        p1ArmAngle = validateAngle(Mathf.LerpAngle(p1ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec), delayVal));
-        //p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.down, auxVec), delayVal));
+        p1ArmAngle = validateAngle(Mathf.LerpAngle(p1ArmAngle, Vector2.SignedAngle(Vector2.right, auxVec), delayValues[1]));
+        //p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.down, auxVec), delayValues[2]));
 
         auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Left", "Move Vertical Left"));
-        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.down, auxVec), delayVal));
+        p2LegAngle = validateAngle(Mathf.LerpAngle(p2LegAngle, Vector2.SignedAngle(Vector2.down, auxVec), delayValues[2]));
         
         auxVec = validateAxisVec(player2.GetAxis2D("Move Horizontal Right", "Move Vertical Right"));
-        p2ArmAngle = validateAngle(Mathf.LerpAngle(p2ArmAngle, Vector2.SignedAngle(Vector2.left, auxVec), delayVal));
+        p2ArmAngle = validateAngle(Mathf.LerpAngle(p2ArmAngle, Vector2.SignedAngle(Vector2.left, auxVec), delayValues[3]));
         
 
         if (Input.GetKeyDown(KeyCode.K)) {
