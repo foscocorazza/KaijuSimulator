@@ -215,8 +215,9 @@ public class GameFlowController : MonoBehaviour {
 
 	IEnumerator ActivateWithDelay(GameObject obj, float delay, bool value) {
 		yield return new WaitForSeconds(delay);
-
-		obj.SetActive (value);
-	}
+       
+        obj.SetActive (value);
+        if (obj.tag == "PlayerScripts") obj.GetComponentInChildren<Camera>().enabled = false;
+    }
 
 }
