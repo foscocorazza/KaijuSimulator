@@ -4,19 +4,45 @@ using UnityEngine;
 
 public class PlayerMutationGenerator : MonoBehaviour {
 
-    public GameObject whipBase, whipSomething, swordBase;
+    public GameObject swordBase;
+    public GameObject hammerBase;
+    public GameObject whipBase;
+    public GameObject whipCube;
+    public GameObject rangeBase;
+    public GameObject[] bullets;
+    public float fireRate = 1;
+
     public Rigidbody p1Hand;
+    public Rigidbody p2Hand;
 
+    [HideInInspector]
     public GameObject p1Weapon;
+    [HideInInspector]
+    public GameObject p2Weapon;
 
+    private GameObject myRangeW1;
+    private GameObject myBullet1;
+    private GameObject myRangeW2;
+    private GameObject myBullet2;
     private int probability;
-    List<float> generatedNumbers;
+    private List<float> generatedNum;
+    private string abc = "qwertyuioplkjhgfdsazxcvbnm";
 
     void Awake() {
-        generatedNumbers = FeatureGenerator.GenerateNumbersFromString("rugard");
-        probability = (int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 0.0f, 100.0f);
+        //kirzde
+        generatedNum = FeatureGenerator.GenerateNumbersFromString(getRandomString(6));
+        probability = (int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.0f, 100.0f);
         mutateBody();
-        //mutateWeapons();
+        mutateWeapons();
+    }
+
+    private string getRandomString(int length) {
+        string result = "";
+        for (int i = 0; i < length; i++) {
+            result += abc[Random.Range(0, abc.Length)];
+        }
+        //Debug.Log(result);
+        return result;
     }
 
     private void mutateBody() {
@@ -26,62 +52,126 @@ public class PlayerMutationGenerator : MonoBehaviour {
 
     private void mutateWeapons() {
         //TODO based on something create weapon :v
+        //Debug.Log(generatedNum[8] + " " + generatedNum[9]);
 
-        //p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 5.0f, 14.0f), 0, null, null);
-        p1Weapon = CreateSword(0.1f, FeatureGenerator.remap(generatedNumbers[9], 0.0f, 1.0f, 1.0f, 10.0f), 1.0f);
-        //p1Weapon = CreateStick(0.1f, 1.5f, 1.0f);
+        //PLAYER 1
+        float mass1 = 1;
+        /*p1Weapon = CreateWhip((int)FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 3.0f, 8.0f), null,
+            GameObject.Instantiate(whipBase, Vector3.up * 10, Quaternion.identity));
+        mass1 = FeatureGenerator.remap(generatedNum[9], 0f, 1f, 0.01f, 0.15f);*/
 
+        /*p1Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));            
+        mass1 = FeatureGenerator.remap(generatedNum[8]+generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
+
+        /*p1Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 4f, 10f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4f, 15.0f));
+        mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
+
+        //
+        p1Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
+
+        mass1 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        myBullet1 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+        myRangeW1 = p1Weapon.transform.GetChild(0).gameObject;
+        StartCoroutine(startFire(0));
+        //
+
+        //Debug.Log("mass " + mass);
+        GetComponent<PlayerController>().delayValues[1] = mass1;
+        
         p1Weapon.transform.SetParent(transform);
         p1Weapon.transform.position = p1Hand.transform.position;
-        p1Weapon.transform.localRotation = p1Hand.transform.localRotation;
+        p1Weapon.transform.localRotation = Quaternion.identity;
+        p1Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p1Hand.transform;
 
-        p1Weapon.transform.GetChild(0).GetComponent<SpringJoint>().connectedBody = p1Hand;
-        //p1Hand.connectedBody = p1Weapon.transform.GetChild(0).GetComponent<Rigidbody>();
+        //PLAYER 2
+        float mass2;
+        /*p2Weapon = CreateSword(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.5f, 1.5f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 15.0f, 50.0f));
+        mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);*/
+
+        p2Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
+            FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
+
+        mass2 = FeatureGenerator.remap(generatedNum[8] + generatedNum[9], 0f, 2f, 0.15f, 0.01f);
+        myBullet2 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+        myRangeW2 = p2Weapon.transform.GetChild(0).gameObject;
+        StartCoroutine(startFire(1));
+
+
+        GetComponent<PlayerController>().delayValues[3] = mass2;
+        
+        p2Weapon.transform.SetParent(transform);
+        p2Weapon.transform.position = p2Hand.transform.position;
+        p2Weapon.transform.localRotation = Quaternion.identity;
+        p2Weapon.transform.GetChild(0).gameObject.AddComponent<CopyTransform>().targetGO = p2Hand.transform;
+        p2Weapon.transform.GetChild(0).gameObject.GetComponent<CopyTransform>().mirrorY = -1;
     }
 
-    public GameObject CreateWhip(int iterations, float offset, GameObject prevGO, GameObject rootGO) {
+    public GameObject CreateWhip(int iterations, GameObject prevGO, GameObject rootGO) {
         if (iterations == 0) {
             return rootGO;
         }
-        GameObject newObj = new GameObject();
-        if (Random.Range(0, 100) < probability)
-            newObj = GameObject.Instantiate(whipBase, this.gameObject.transform);
-        else
-            newObj = GameObject.Instantiate(whipSomething, this.gameObject.transform);
-        newObj.transform.position += new Vector3(offset, 0, 0);
-
-        if (prevGO != null) {
-            if (newObj.transform.localScale.x > 0.3f) newObj.transform.localScale = newObj.transform.localScale + new Vector3(Random.Range(0.0f, 0.2f), 0.0f, 0.0f);
-            newObj.GetComponent<HingeJoint>().connectedBody = prevGO.GetComponent<Rigidbody>();
-        } else {
-            rootGO = newObj;
+        if (prevGO == null) {
+            prevGO = rootGO.transform.GetChild(0).gameObject;
         }
+        GameObject newObj = new GameObject();
+        newObj = GameObject.Instantiate(whipCube, rootGO.transform);
+        newObj.transform.localPosition = prevGO.transform.localPosition + new Vector3(prevGO.transform.localScale.x+0.1f, 0, 0);
+
+        newObj.transform.localScale = newObj.transform.localScale +
+            new Vector3(0f, Random.Range(0.1f, 0.4f), 0.0f);
+
+        newObj.GetComponent<HingeJoint>().connectedBody = prevGO.GetComponent<Rigidbody>();
         prevGO = newObj;
         iterations--;
 
-        return CreateWhip(iterations--, offset + newObj.GetComponent<Collider>().bounds.size.x, prevGO, rootGO);
+        return CreateWhip(iterations, prevGO, rootGO);
 
     }
 
-    public GameObject CreateSword(float width, float height, float mass) {
+    public GameObject CreateSword(float width, float height) { 
+        //Debug.Log(width+" "+height);
         GameObject sB = GameObject.Instantiate(swordBase, Vector3.up * 10, Quaternion.identity);
-        Transform blade = sB.transform.GetChild(2);
-        blade.localScale = new Vector3(width, height, 0.05f);
-        blade.localPosition += new Vector3(0, blade.gameObject.GetComponent<Collider>().bounds.size.y / 2 - 0.5f, 0);
-        //sB.transform.GetChild(0).GetComponent<Rigidbody>().mass = mass;
+        Transform sBase = sB.transform.GetChild(1);
+        Transform blade = sBase.transform.GetChild(0);
+        sBase.localScale = new Vector3(width, sBase.localScale.y, sBase.localScale.z);
+        blade.localScale = new Vector3(blade.localScale.x, height, blade.localScale.z);
+        blade.localPosition = new Vector3(0f, height/2 + 0.5f, 0f);
         return sB;
     }
 
-    public GameObject CreateStick(float width, float height, float mass) {
-        GameObject sB = GameObject.Instantiate(swordBase, Vector3.up *10, Quaternion.identity);
-        Transform top = sB.transform.GetChild(1);
-        Transform bottom = sB.transform.GetChild(2);
-        top.localScale = new Vector3(width, height, 0.05f);
-        top.localPosition += new Vector3(0, top.gameObject.GetComponent<Collider>().bounds.size.y / 2, 0);
+    public GameObject CreateHammer(float width, float height) {
+        GameObject sB = GameObject.Instantiate(hammerBase, Vector3.up *10, Quaternion.identity);
+        Transform bottom = sB.transform.GetChild(0).GetChild(0);
+        Transform top = bottom.transform.GetChild(0);
 
-        bottom.localScale = new Vector3(width, height, 0.05f);
-        bottom.localPosition -= new Vector3(0, bottom.gameObject.GetComponent<Collider>().bounds.size.y / 2, 0);
-        sB.GetComponent<Rigidbody>().mass = mass;
+        bottom.localScale = new Vector3(bottom.localScale.x, height, bottom.localScale.z);
+        bottom.localPosition = new Vector3(0, height / 2 + 0.5f, 0);
+
+        top.localScale = new Vector3(width, height/15f, top.localScale.z);
+        top.localPosition = new Vector3(0, height/30f + 0.5f, 0);
         return sB;
     }
+
+    public GameObject CreateRangedWeapon(float width, float height) {
+        GameObject sB = GameObject.Instantiate(rangeBase, Vector3.up * 10, Quaternion.identity);
+        Transform mainBody = sB.transform.GetChild(0);
+        mainBody.localScale = new Vector3(width, height, mainBody.localScale.z);
+        mainBody.localPosition = new Vector3(0, height / 2 + 0.5f, 0);
+        return sB;
+    }
+
+    private IEnumerator startFire(int player) {
+        GameObject aux;
+        GameObject auxBullet = player == 0 ? myBullet1 : myBullet2;
+        GameObject auxSource = auxSource = player == 0 ? myRangeW1 : myRangeW2;
+        while (true) {
+            yield return new WaitForSeconds(fireRate);
+            aux = GameObject.Instantiate(auxBullet, auxSource.transform.position, auxSource.transform.rotation);
+        }
+    }
+
 }

@@ -10,7 +10,9 @@ public class NameSelector : MonoBehaviour {
 	public GameObject[] wheels;
 	public GameObject wheelsIndicator;
 	public GameObject backgroundImage;
+	public GameObject fourCharsPlease;
 	public float Offset = 42f;
+	public int MinLength = 4;
 	public bool IsReady = false;
 
 	private int currentWheel = 0;
@@ -33,47 +35,88 @@ public class NameSelector : MonoBehaviour {
 		StartWheelY = wheels [0].GetComponent<RectTransform> ().anchoredPosition.y;
 	}
 
+	private string LastKey = "";
+	private float LastKeyPressedSince = 0;
+	private float LastMovement = 0;
+
+
+	 bool ShouldHit() {
+		if (LastKey == "") 
+			return true;
+
+		if (LastKeyPressedSince > 0.5f) {
+			if (LastMovement > 0.1f) {
+				LastMovement = 0;
+				return true;
+			} else {
+				LastMovement += Time.deltaTime;
+			}
+		}
+
+		return  false;
+	}
+
 	void Update () {
+		Debug.Log ("a");
 		if (GetComponentInParent<CanvasGroup> ().alpha < 0.5f)
 			return;
-		
+
+		Debug.Log ("b");
 		if (IsReady)
 			return;
+		Debug.Log ("c");
 
 		if (player.GetButton ("ArrowKeyUp")) {
-			if(LastFrameWasFree) MoveWheel (+1);
-			LastFrameWasFree = false;
+			Debug.Log ("d");
+			if(ShouldHit()) MoveWheel (+1);
+			if(LastKey == "Up") LastKeyPressedSince += Time.deltaTime;
+			else LastKeyPressedSince = 0;
+			LastKey = "Up";
 			return;
 		}
 
 		if (player.GetButton ("ArrowKeyDown")) {
-			Debug.Log ("hduisfua");
-			if(LastFrameWasFree) MoveWheel (-1);
-			LastFrameWasFree = false;
+			Debug.Log ("e");
+			if(ShouldHit()) MoveWheel (-1);
+			if(LastKey == "Down") LastKeyPressedSince += Time.deltaTime;
+			else LastKeyPressedSince = 0;
+			LastKey = "Down";
 			return;
 		}
 
+		LastKey = "";
+
 		if (player.GetButton ("ArrowKeyLeft")) {
+			Debug.Log ("f");
 			if(LastFrameWasFree) ChangeWheel (-1);
 			LastFrameWasFree = false;
 			return;
 		}
 
 		if (player.GetButton ("ArrowKeyRight") || player.GetButton ("Fire")) {
+			Debug.Log ("g");
 			if(LastFrameWasFree) ChangeWheel (+1);
 			LastFrameWasFree = false;
 			return;
 		}
 
 		if (player.GetButton ("Cancel")) {
+			Debug.Log ("h");
 			if (LastFrameWasFree) RemoveCurrent ();
 			LastFrameWasFree = false;
 			return;
 		}
 
 		if (player.GetButton ("Start")) {
-			if (LastFrameWasFree)
-				SetReady (true);
+
+			Debug.Log ("i");
+			if (LastFrameWasFree) {
+				if (GetString ().Length < MinLength) {
+					fourCharsPlease.GetComponent<FadeComponent> ().Fade (0f, 1f, 0f, 0.2f);
+				} else {
+					SetReady (true);
+				}
+			}
 			LastFrameWasFree = false;
 			return;
 		}
@@ -98,8 +141,10 @@ public class NameSelector : MonoBehaviour {
 
 		if (wheelExists && letterExists) {
 			MoveWheelToLetter (currentWheel, nextLetter);
-	
 		}
+
+		Debug.Log (GetString());
+
 	}
 
 	void MoveWheelToLetter(int wheel, int nextLetter) {
@@ -113,10 +158,16 @@ public class NameSelector : MonoBehaviour {
 		bool wheelExists = nextWheel >= 0 && nextWheel < wheels.Length;
 		if (wheelExists) {
 			currentWheel = nextWheel;
+
+			//Debug.Log ("a." + GetString());
 			SetLastLetter (Mathf.Max (lastLetter, currentWheel));
+			//Debug.Log ("b." + GetString());
 		}
 
+		//Debug.Log ("c." + GetString());
 		SetWheelIndicator ();
+		MoveWheelToLetter (currentWheel, currentLetter [currentWheel]);
+		Debug.Log (GetString());
 	}
 
 	void SetWheelIndicator() {
@@ -131,42 +182,44 @@ public class NameSelector : MonoBehaviour {
 		if (currentWheel == 0)
 			return;
 
-		if (currentWheel == last) {
+		/*if (currentWheel == last) {
 			currentLetter [last] = 0;
 			currentWheel = last-1;
 			SetLastLetter (currentWheel);
+			MoveWheelToLetter (currentWheel, currentLetter [currentWheel]);
 			SetWheelIndicator ();
+			Debug.Log (GetString());
 			return;
-		}
+		}*/
 		
-		for (int i = currentWheel; i < lastLetter-1; i++) {
-			currentLetter [i] = currentLetter [i + 1];
+		for (int i = currentWheel; i < lastLetter; i++) {
+			currentLetter [i] = i + 1 > last ? 0 : currentLetter [i + 1];
 			MoveWheelToLetter (i, currentLetter [i]);
 		}
 
 		SetLastLetter (lastLetter - 1);
 		if (currentWheel > lastLetter) currentWheel--;
 		SetWheelIndicator ();
+		Debug.Log (GetString());
 			
 	}
 	void SetLastLetter(int index) {
+
 		lastLetter = index;
 		for (int i = 0; i < wheels.Length; i++) {
 			wheels [i].SetActive (lastLetter >= i);
 		}
 
-		for (int i = lastLetter; i < wheels.Length; i++) {
-			currentLetter [lastLetter] = 0;
+		for (int i = (lastLetter+1); i < wheels.Length; i++) {
+			currentLetter [i] = 0;
 		}
-
-
 
 	}
 
 	public string GetString() {
 		string Alphabet = "abcdefghijklmnopqrstuvwxyz";
 		string s = "";
-		for (int i = 0; i < wheels.Length; i++) {
+		for (int i = 0; i <= lastLetter; i++) {
 			if (wheels [i].activeSelf) {
 				s += Alphabet [currentLetter [i]];
 			}
@@ -178,6 +231,7 @@ public class NameSelector : MonoBehaviour {
 		IsReady = value;
 		wheelsIndicator.SetActive (!value);
 		backgroundImage.SetActive (!value);
+		fourCharsPlease.SetActive (!value);
 
 		if (BothReady ()) {
 			Continue();
@@ -199,7 +253,6 @@ public class NameSelector : MonoBehaviour {
 
 	// Hiding and Moving
 	public void Hide(int start, int end, bool LeftToRight) {
-		Debug.Log (start + " " + end);
 
 		int diff = end - start;
 	
@@ -218,7 +271,7 @@ public class NameSelector : MonoBehaviour {
 
 	public void HideFirstHalf() {
 		string s = GetString ();
-		Hide (0, HalfIndex(s)-1, true);
+		Hide (0, HalfIndex(s), true);
 	}
 
 	public void HideSecondHalf() {
@@ -239,13 +292,41 @@ public class NameSelector : MonoBehaviour {
 		}
 	}
 
-	public Vector2 MaskCenterAtLetter(int index) {
-		int last = wheels.Length - 1;
-		float s = wheels[0].GetComponent<RectTransform> ().anchoredPosition.x;
-		float e = wheels[last].GetComponent<RectTransform> ().anchoredPosition.x;
-		float t = e - s;
+	public Vector2 Position{
+		get { 
+			return GetComponent<RectTransform> ().anchoredPosition;
+		}
+		set {
+			GetComponent<RectTransform> ().anchoredPosition = value;
+		}
+	}
 
-		return new Vector2(MaskPosition.x + t/2 + index * t /(last), MaskPosition.y);
+
+
+	public void MoveTo(Vector2 pos, float delay, float time) {
+		StartCoroutine (DoMove (pos, delay, time));
+	}
+
+
+	IEnumerator DoMove(Vector2 finalPos, float delay, float time)
+	{
+		yield return new WaitForSeconds(delay);
+
+		float t = 0;
+		Vector2 startPos = Position;
+
+		float diff = Vector2.Distance (startPos , finalPos);
+		while (diff > 0.0001f)
+		{
+			diff = Vector2.Distance (startPos , finalPos);
+
+			t +=  (Time.deltaTime / time);
+			Position = Vector2.Lerp (startPos, finalPos, t*t*t);
+			yield return null;
+		}
+
+		Position = finalPos;
+
 
 	}
 
