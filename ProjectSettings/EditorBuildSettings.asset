@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/[Simone] Little People.unity
+    guid: 81f16969529d4489aaeb260e83293489
+  - enabled: 1
+    path: Assets/Scenes/[Simone] Title.unity
+    guid: e12340538cf144bddb219ad8ea8d44aa
