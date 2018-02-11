@@ -217,6 +217,9 @@ public class GameFlowController : MonoBehaviour {
 		yield return new WaitForSeconds(delay);
 
 		obj.SetActive (value);
+        if (obj.gameObject.CompareTag("PlayerScripts")) {
+            obj.GetComponentInChildren<Camera>().enabled = false;
+        }
 	}
 
 }
