@@ -42,6 +42,7 @@ public class PeopleController : MonoBehaviour {
                 GameObject.Instantiate(particleSystem, gameObject.transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
                 AudioSource s =  GameObject.Instantiate(soundObject, gameObject.transform.position, Quaternion.identity).GetComponent<AudioSource>();
                 s.clip = SoundManager.Instance.GetSound("Killed3");
+                s.volume = 0.07f;
                 s.Play();
                 Destroy(this.gameObject);
             }
@@ -49,6 +50,7 @@ public class PeopleController : MonoBehaviour {
             {
                 AudioSource audioS = this.GetComponent<AudioSource>();
                 audioS.clip = SoundManager.Instance.GetSound("Killed1");
+                audioS.volume = 0.07f; ;
                 audioS.Play();
                 isRunning = false;
                 rb.AddRelativeForce(new Vector3(10, 5, 0), ForceMode.Impulse);

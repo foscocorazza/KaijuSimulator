@@ -620,6 +620,96 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75420d437f38d194994b6ffc688868b3, type: 2}
   m_IsPrefabParent: 0
@@ -634,6 +724,7 @@ GameObject:
   - component: {fileID: 347873464}
   - component: {fileID: 347873463}
   - component: {fileID: 347873462}
+  - component: {fileID: 347873466}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -703,6 +794,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &347873466
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 347873461}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c28cd1640ae353a44bba1d2c697124b3, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &374263993
 Prefab:
   m_ObjectHideFlags: 0
@@ -1126,14 +1297,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5018396cb2997a24095a38125ac8c270, type: 3}
   - name: Killed3
     clip: {fileID: 8300000, guid: ff2779f945ec1cd429dc8e225e3d8408, type: 3}
-  - name: Killed1
-    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
-  - name: Killed1
-    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
-  - name: Killed1
-    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
-  - name: Killed1
-    clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
+  - name: Soundtrack
+    clip: {fileID: 8300000, guid: c28cd1640ae353a44bba1d2c697124b3, type: 3}
+  - name: Grunt1
+    clip: {fileID: 8300000, guid: 3ed4e091618347b4598145901c53e778, type: 3}
+  - name: Grunt2
+    clip: {fileID: 8300000, guid: 373ed6ee555219746b3f30f476454d23, type: 3}
+  - name: Grunt3
+    clip: {fileID: 8300000, guid: c092ffcfd0dc89d4fb353715fa6f18f4, type: 3}
   - name: Killed1
     clip: {fileID: 8300000, guid: 1e03a94886971b64b8ac6b9509efdea2, type: 3}
   - name: Killed1

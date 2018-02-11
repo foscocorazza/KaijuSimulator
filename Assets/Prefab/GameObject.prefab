@@ -155,15 +155,15 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.073
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 60
   DopplerLevel: 1
-  MinDistance: 10.967156
+  MinDistance: 5.76
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -211,7 +211,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4a8db0549308748a7c7598a3762810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.39621648
+  speed: 0.32508066
   particleSystem: {fileID: 1753101666745180, guid: 75420d437f38d194994b6ffc688868b3,
     type: 2}
   soundObject: {fileID: 1177310816928328, guid: 891d5da77e017ae41bc264a81b920620,
