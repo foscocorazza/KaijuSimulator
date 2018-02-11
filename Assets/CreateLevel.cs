@@ -5,10 +5,13 @@ using UnityEngine;
 public class CreateLevel : MonoBehaviour {
     public Building3D buildingPrefab;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    // Use this for initialization
+    void Start()
+    {
         //TMP lot of magic numbers but whatever
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 25; i++)
+        {
             Building3D building = Instantiate(buildingPrefab);
             Vector3 pos = new Vector3();
             pos.x = Random.Range(-20, 35);
@@ -16,13 +19,14 @@ public class CreateLevel : MonoBehaviour {
             pos.z = 0;
             building.transform.position = pos;
 
-            building.storiesCount = Random.Range(3, 7);
+            building.startStory = Random.Range(3, 7);
+            building.storiesCount = building.startStory;
             building.SetTint(Random.ColorHSV());
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

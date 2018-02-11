@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114585968472653390}
   m_Layer: 0
   m_Name: BulletHeavy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!114 &114585968472653390
 MonoBehaviour:
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 30
+  lifeTime: 0.9
 --- !u!135 &135343443451397160
 SphereCollider:
   m_ObjectHideFlags: 1
