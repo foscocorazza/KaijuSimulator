@@ -10,7 +10,8 @@ public class PlayerMutationGenerator : MonoBehaviour {
     public GameObject whipCube;
     public GameObject rangeBase;
     public GameObject[] bullets;
-    public float fireRate = 1;
+    public float fireRate1 = 1;
+    public float fireRate2 = 1.3f;
 
     public Rigidbody p1HandHand;
     public Rigidbody p2HandHand;
@@ -125,7 +126,9 @@ public class PlayerMutationGenerator : MonoBehaviour {
         } else {
             p1Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
-            myBullet1 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+            int auxBulletProb = (int)FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 100f);
+            auxBulletProb = auxBulletProb <= 50 ? 0 : 1;
+            myBullet1 = bullets[auxBulletProb];
             myRangeW1 = p1Weapon.transform.GetChild(0).gameObject;
             StartCoroutine(startFire(0));
         }
@@ -146,9 +149,11 @@ public class PlayerMutationGenerator : MonoBehaviour {
             p2Weapon = CreateHammer(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 4f, 10f),
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 4f, 15.0f));
         } else {
-            p2Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0.7f, 2f),
+            p2Weapon = CreateRangedWeapon(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0.7f, 2f),
             FeatureGenerator.remap(generatedNum[9], 0.0f, 1.0f, 0.3f, 1.5f));
-            myBullet2 = bullets[Mathf.FloorToInt(FeatureGenerator.remap(generatedNum[7], 0.0f, 1.0f, 0f, 2.9f))];
+            int auxBulletProb = (int)FeatureGenerator.remap(generatedNum[8], 0.0f, 1.0f, 0f, 100f);
+            auxBulletProb = auxBulletProb <= 50 ? 0 : 1;
+            myBullet2 = bullets[auxBulletProb];
             myRangeW2 = p2Weapon.transform.GetChild(0).gameObject;
             StartCoroutine(startFire(1));
         }                
@@ -216,9 +221,10 @@ public class PlayerMutationGenerator : MonoBehaviour {
     private IEnumerator startFire(int player) {
         GameObject aux;
         GameObject auxBullet = player == 0 ? myBullet1 : myBullet2;
-        GameObject auxSource = auxSource = player == 0 ? myRangeW1 : myRangeW2;
+        GameObject auxSource = player == 0 ? myRangeW1 : myRangeW2;
+        float thisRate = player == 0 ? fireRate1 : fireRate2;
         while (true) {
-            yield return new WaitForSeconds(fireRate);
+            yield return new WaitForSeconds(thisRate);
             aux = GameObject.Instantiate(auxBullet, auxSource.transform.position, auxSource.transform.rotation);
         }
     }
