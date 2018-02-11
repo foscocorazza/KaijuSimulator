@@ -53,7 +53,7 @@ public class Building3D : MonoBehaviour {
         var colOverLifetime = _emitter.colorOverLifetime;
         Color startColor = storiesCount == 1 ? grayscale : Color.red;
         Gradient grad = new Gradient();
-        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(startColor, 0.25f), new GradientColorKey(grayscale, 0.37f) }, new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
+        grad.SetKeys(new GradientColorKey[] { new GradientColorKey(startColor, 0.25f), new GradientColorKey(grayscale, 0.37f) }, new GradientAlphaKey[] { new GradientAlphaKey(0.5f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
 
     }
 
