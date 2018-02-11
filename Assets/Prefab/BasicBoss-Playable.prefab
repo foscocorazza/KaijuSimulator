@@ -2287,6 +2287,8 @@ MonoBehaviour:
   foot1: {fileID: 4863123620215506}
   leg2: {fileID: 4420013478211914}
   foot2: {fileID: 4801365734009670}
+  head1: {fileID: 4525833713702036}
+  head2: {fileID: 4696398047920688}
   p1Weapon: {fileID: 0}
   p2Weapon: {fileID: 0}
 --- !u!114 &114024639166537780
