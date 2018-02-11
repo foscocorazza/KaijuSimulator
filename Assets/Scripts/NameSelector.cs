@@ -57,14 +57,14 @@ public class NameSelector : MonoBehaviour {
 	}
 
 	void Update () {
-		Debug.Log ("a");
+		//Debug.Log ("a");
 		if (GetComponentInParent<CanvasGroup> ().alpha < 0.5f)
 			return;
 
-		Debug.Log ("b");
+		//Debug.Log ("b");
 		if (IsReady)
 			return;
-		Debug.Log ("c");
+		//Debug.Log ("c");
 
 		if (player.GetButton ("ArrowKeyUp")) {
 			Debug.Log ("d");
@@ -246,8 +246,10 @@ public class NameSelector : MonoBehaviour {
 	}
 
 	void Continue() {
+        
 		GameFlowController.Instance ().PrepareGame();
-	}
+        
+    }
 
 
 
