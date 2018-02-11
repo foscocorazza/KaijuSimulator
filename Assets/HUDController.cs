@@ -30,11 +30,21 @@ public class HUDController : MonoBehaviour {
 		maxMaskWidth = BarMask.rect.width;
 		started = true;
 	}
+	void StopTimer() {
+		started = false;
+	}
 
 	void Update() { 
 		if (started) {
 			time -= Time.deltaTime;
+
+			if (time <= 0) {
+				StopTimer ();
+				return;
+			}
+
 			SetSeconds (time);
+
 		}
 	}
 

@@ -890,6 +890,16 @@ Prefab:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198879634461449312, guid: 75420d437f38d194994b6ffc688868b3,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75420d437f38d194994b6ffc688868b3, type: 2}
   m_IsPrefabParent: 0
@@ -1506,7 +1516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2a4e59ae82d4499a17009cc59ca0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 60
+  maxTime: 10
   TimeLabel: {fileID: 1911264075}
   ScoreLabel: {fileID: 1641674301}
   BarMask: {fileID: 21973055}
